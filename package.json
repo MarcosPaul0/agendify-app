@@ -5,7 +5,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "pre-commit": "echo 'pre-commit'",
+    "pre-push": "npm run test"
   },
   "dependencies": {
     "@types/react": "~18.0.27",
