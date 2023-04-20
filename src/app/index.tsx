@@ -5,6 +5,7 @@ export default function App() {
   return (
     <View className="flex-1 items-center justify-center bg-green-500">
       <Text className="text-white">TESTE</Text>
+      <Text className="text-white">TESTE CICD</Text>
       <StatusBar style="auto" />
     </View>
   );
