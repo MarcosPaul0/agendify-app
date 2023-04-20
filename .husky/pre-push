@@ -1,0 +1,17 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Obter o nome da branch atual
+branch=$(git symbolic-ref --short HEAD)
+
+# Comparar o nome da branch atual com "main"
+if [ "$branch" == "main" -o "$branch" == "develop" ]
+then
+  # Se for igual, execute o comando "npm run test"
+  echo "A versão não foi atualizada"
+  npm run test
+else
+  # Caso contrário, execute o comando "npm run pre-push"
+  echo "A versão foi atualizada"
+  npm run pre-push
+fi
