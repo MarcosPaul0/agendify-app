@@ -4,7 +4,13 @@
     "web": {
       "bundler": "metro"
     },
-    "name": "scheduling",
-    "slug": "scheduling"
+    "name": "agendify",
+    "slug": "agendify",
+    "extra": {
+      "eas": {
+        "projectId": "d7041011-eeac-46a6-89c4-e086c55489c5"
+      }
+    },
+    "owner": "marcospaul0"
   }
 }
