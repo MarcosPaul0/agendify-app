@@ -17,6 +17,9 @@
       "backgroundColor": "#104392"
     },
     "icon": "./src/assets/icon.png",
-    "owner": "marcospaul0"
+    "owner": "marcospaul0",
+    "android": {
+      "package": "com.marcospaul0.agendify"
+    }
   }
 }

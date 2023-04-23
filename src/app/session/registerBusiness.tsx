@@ -22,7 +22,7 @@ type TRegisterBusinessFormData = z.infer<
   typeof registerBusinessValidationSchema
 >;
 
-export function RegisterBusiness() {
+export default function RegisterBusiness() {
   const {
     control,
     handleSubmit,
