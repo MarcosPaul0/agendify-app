@@ -5,7 +5,7 @@ import { SearchInput } from '@components/SearchInput';
 import { useState } from 'react';
 import { ScrollView } from 'react-native';
 
-export default function SearchService() {
+export default function SearchBusiness() {
   const [search, setSearch] = useState('');
 
   function changeSearch(text: string) {

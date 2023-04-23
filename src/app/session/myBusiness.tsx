@@ -3,7 +3,7 @@ import { Container } from '@components/Container';
 import { ScreenTitle } from '@components/ScreenTitle';
 import { ScrollView } from 'react-native';
 
-export default function SearchService() {
+export default function MyBusiness() {
   return (
     <Container>
       <ScreenTitle text="Meus negócios" />

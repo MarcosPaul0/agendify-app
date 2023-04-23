@@ -31,7 +31,7 @@ export default function Login() {
 
   async function login() {
     // TODO adicionar integração com a API
-    router.push(APP_ROUTES.SEARCH_SERVICES);
+    router.push(APP_ROUTES.SEARCH_BUSINESS);
   }
 
   return (
