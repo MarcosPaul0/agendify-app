@@ -36,7 +36,7 @@ export default function TabsLayout() {
         options={{
           tabBarShowLabel: false,
           tabBarButton: ({ to }) => {
-            if (path === APP_ROUTES.MY_SERVICES) {
+            if (path === APP_ROUTES.MY_BUSINESS) {
               return (
                 <TouchableOpacity
                   className={`
