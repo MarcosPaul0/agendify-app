@@ -8,7 +8,7 @@
     "test": "jest",
     "pre-commit": "echo 'pre-commit'",
     "pre-push": "npm run test && npm run update-version",
-    "update-version": "npm version patch --no-git-tag-version && git add package.json && git commit -m 'feat: atualiza versão do package.json'"
+    "update-version": "npm version patch --no-git-tag-version && git add package.json && git add package-lock.json && git commit -m 'feat: atualiza versão do package.json'"
   },
   "eslintConfig": {
     "extends": "universe/native"
@@ -82,6 +82,6 @@
     "metro-resolver": "^0.73.7"
   },
   "name": "scheduling",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true
 }
