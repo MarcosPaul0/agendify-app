@@ -1,37 +1,34 @@
 import { ControlledInput } from '@components/Input';
 import { useForm } from 'react-hook-form';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@components/Button';
 import { Logo } from '@assets/icons/Logo';
 import { LinkButton } from '@components/LinkButton';
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { Container } from '@components/Container';
-import packageInfo from '../../package.json';
 
-const loginFormValidationSchema = z.object({
+const registerUserFormValidationSchema = z.object({
   email: z.string().email(),
   password: z.string(),
+  confirmPassword: z.string(),
 });
 
-type TLoginFormData = z.infer<typeof loginFormValidationSchema>;
+type TRegisterUserFormData = z.infer<typeof registerUserFormValidationSchema>;
 
-export default function Login() {
-  const router = useRouter();
-
+export default function RegisterUser() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<TLoginFormData>({
-    resolver: zodResolver(loginFormValidationSchema),
+  } = useForm<TRegisterUserFormData>({
+    resolver: zodResolver(registerUserFormValidationSchema),
   });
 
-  async function login() {
+  async function registerUser() {
     // TODO adicionar integração com a API
-    router.push(APP_ROUTES.SEARCH_SERVICES);
   }
 
   return (
@@ -66,16 +63,25 @@ export default function Login() {
         }}
       />
 
-      <Button title="Entrar" text="Entrar" onPress={handleSubmit(login)} />
-      <LinkButton
-        text="Registrar-se"
-        variant="outlined"
-        href={APP_ROUTES.REGISTER_USER}
+      <ControlledInput
+        label="Confirmar senha"
+        errorMessage={errors.password?.message}
+        controllerProps={{
+          control,
+          name: 'confirmPassword',
+        }}
+        inputProps={{
+          textContentType: 'password',
+          secureTextEntry: true,
+        }}
       />
 
-      <Text className="text-GRAY_500 mx-0 mt-auto">
-        ALPHA - {packageInfo.version}
-      </Text>
+      <Button
+        title="Registrar"
+        text="Registrar"
+        onPress={handleSubmit(registerUser)}
+      />
+      <LinkButton text="Entrar" variant="outlined" href={APP_ROUTES.LOGIN} />
     </Container>
   );
 }

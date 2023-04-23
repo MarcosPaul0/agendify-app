@@ -1,9 +1,12 @@
 {
   "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended",
     "airbnb",
     "prettier"
   ],
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
@@ -15,6 +18,9 @@
   },
   "root": true,
   "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error"
+    ],
     "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     "import/no-unresolved": "off",
     "react/jsx-filename-extension": [
@@ -41,5 +47,5 @@
     "react/jsx-no-constructed-context-values": "off",
     "react/style-prop-object": "off"
   },
-  "plugins": ["prettier"]
+  "plugins": ["react", "prettier", "@typescript-eslint"]
 }
