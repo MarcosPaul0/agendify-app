@@ -20,6 +20,13 @@
     "owner": "marcospaul0",
     "android": {
       "package": "com.marcospaul0.agendify"
-    }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d7041011-eeac-46a6-89c4-e086c55489c5"
+    },
+    "ios": {}
   }
 }
