@@ -26,7 +26,9 @@ export function Container({ children, isScrollable }: IScreenContainerProps) {
 
       {isScrollable ? (
         <SafeAreaView className="flex-1 items-center bg-midnight px-6 pt-6 bg-GRAY_50">
-          <ScrollView className="bg-GRAY_50">{children}</ScrollView>
+          <ScrollView className="flex-1 w-full bg-GRAY_50">
+            {children}
+          </ScrollView>
         </SafeAreaView>
       ) : (
         <SafeAreaView className="flex-1 items-center bg-midnight px-6 pt-6 bg-GRAY_50">
