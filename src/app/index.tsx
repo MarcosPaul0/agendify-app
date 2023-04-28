@@ -41,41 +41,43 @@ export default function Login() {
         <Logo />
       </View>
 
-      <ControlledInput
-        label="Email"
-        errorMessage={errors.email?.message}
-        controllerProps={{
-          control,
-          name: 'email',
-        }}
-        inputProps={{
-          textContentType: 'emailAddress',
-        }}
-      />
+      <View className="w-full px-6">
+        <ControlledInput
+          label="Email"
+          errorMessage={errors.email?.message}
+          controllerProps={{
+            control,
+            name: 'email',
+          }}
+          inputProps={{
+            textContentType: 'emailAddress',
+          }}
+        />
 
-      <ControlledInput
-        label="Senha"
-        errorMessage={errors.password?.message}
-        controllerProps={{
-          control,
-          name: 'password',
-        }}
-        inputProps={{
-          textContentType: 'password',
-          secureTextEntry: true,
-        }}
-      />
+        <ControlledInput
+          label="Senha"
+          errorMessage={errors.password?.message}
+          controllerProps={{
+            control,
+            name: 'password',
+          }}
+          inputProps={{
+            textContentType: 'password',
+            secureTextEntry: true,
+          }}
+        />
 
-      <Button title="Entrar" text="Entrar" onPress={handleSubmit(login)} />
-      <LinkButton
-        text="Registrar-se"
-        variant="outlined"
-        href={APP_ROUTES.REGISTER_USER}
-      />
+        <Button title="Entrar" text="Entrar" onPress={handleSubmit(login)} />
+        <LinkButton
+          text="Registrar-se"
+          variant="outlined"
+          href={APP_ROUTES.REGISTER_USER}
+        />
 
-      <Text className="text-GRAY_500 mx-0 mt-auto">
-        ALPHA - {packageInfo.version}
-      </Text>
+        <Text className="text-GRAY_500 self-center mt-10">
+          ALPHA - {packageInfo.version}
+        </Text>
+      </View>
     </Container>
   );
 }
