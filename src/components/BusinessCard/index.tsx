@@ -3,6 +3,7 @@ import { Image } from 'expo-image';
 import { Rating } from '@components/Rating';
 import { Heart } from 'phosphor-react-native';
 import { COLORS } from '@constants/colors.constant';
+import { useRouter } from 'expo-router';
 import { IBusinessCardProps } from './interfaces/businessCardProps.interface';
 
 export function BusinessCard({
@@ -11,12 +12,20 @@ export function BusinessCard({
   description,
   favoriteIsActive,
   isFavorite,
+  redirectTo,
 }: IBusinessCardProps) {
+  const router = useRouter();
+
   const favoriteIconStyle = isFavorite ? 'fill' : 'regular';
   const titleStyle = favoriteIsActive ? 'mr-4' : 'mr-0';
 
+  function redirectToScreen() {
+    router.push(redirectTo);
+  }
+
   return (
     <TouchableOpacity
+      onPress={redirectToScreen}
       className={`
       w-full p-4 flex-row mb-4 items-center
       bg-GRAY_100 border border-GRAY_400 rounded-xl

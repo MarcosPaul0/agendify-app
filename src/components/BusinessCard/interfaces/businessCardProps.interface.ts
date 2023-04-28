@@ -4,4 +4,5 @@ export interface IBusinessCardProps {
   description: string;
   favoriteIsActive?: boolean;
   isFavorite?: boolean;
+  redirectTo: string;
 }
