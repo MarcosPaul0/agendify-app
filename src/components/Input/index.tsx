@@ -23,6 +23,7 @@ export function ControlledInput({
             className={`
               text-base text-GRAY_800 w-full py-1.5 pl-2.5
               bg-GRAY_100 border ${inputBorderStyle} rounded-lg
+              max-h-20
             `}
             selectionColor={COLORS.GRAY_800}
             value={value}

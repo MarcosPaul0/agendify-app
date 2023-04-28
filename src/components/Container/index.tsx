@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import {
   useFonts,
   Roboto_400Regular,
@@ -7,10 +7,15 @@ import {
 } from '@expo-google-fonts/roboto';
 import { SplashScreen } from 'expo-router';
 import { IScreenContainerProps } from './interfaces/screenContainerProps.interface';
+import { CONTAINER_BG_COLOR } from './constants/containerBgColor.constant';
 
 SplashScreen.preventAutoHideAsync();
 
-export function Container({ children, isScrollable }: IScreenContainerProps) {
+export function Container({
+  children,
+  bgColor = 'gray',
+  hasMarginTop = true,
+}: IScreenContainerProps) {
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold,
@@ -20,19 +25,19 @@ export function Container({ children, isScrollable }: IScreenContainerProps) {
     return <SplashScreen />;
   }
 
+  const marginTop = hasMarginTop && 'pt-6';
+
   return (
     <>
       <StatusBar style="dark" />
 
-      {isScrollable ? (
-        <SafeAreaView className="flex-1 items-center bg-midnight px-6 pt-6 bg-GRAY_50">
-          <ScrollView className="bg-GRAY_50">{children}</ScrollView>
-        </SafeAreaView>
-      ) : (
-        <SafeAreaView className="flex-1 items-center bg-midnight px-6 pt-6 bg-GRAY_50">
-          {children}
-        </SafeAreaView>
-      )}
+      <SafeAreaView
+        className={`
+          flex-1 items-center bg-midnight ${marginTop} ${CONTAINER_BG_COLOR[bgColor]}
+        `}
+      >
+        {children}
+      </SafeAreaView>
     </>
   );
 }

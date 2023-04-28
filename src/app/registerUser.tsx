@@ -38,50 +38,52 @@ export default function RegisterUser() {
         <Logo />
       </View>
 
-      <ControlledInput
-        label="Email"
-        errorMessage={errors.email?.message}
-        controllerProps={{
-          control,
-          name: 'email',
-        }}
-        inputProps={{
-          textContentType: 'emailAddress',
-        }}
-      />
+      <View className="w-full px-6">
+        <ControlledInput
+          label="Email"
+          errorMessage={errors.email?.message}
+          controllerProps={{
+            control,
+            name: 'email',
+          }}
+          inputProps={{
+            textContentType: 'emailAddress',
+          }}
+        />
 
-      <ControlledInput
-        label="Senha"
-        errorMessage={errors.password?.message}
-        controllerProps={{
-          control,
-          name: 'password',
-        }}
-        inputProps={{
-          textContentType: 'password',
-          secureTextEntry: true,
-        }}
-      />
+        <ControlledInput
+          label="Senha"
+          errorMessage={errors.password?.message}
+          controllerProps={{
+            control,
+            name: 'password',
+          }}
+          inputProps={{
+            textContentType: 'password',
+            secureTextEntry: true,
+          }}
+        />
 
-      <ControlledInput
-        label="Confirmar senha"
-        errorMessage={errors.password?.message}
-        controllerProps={{
-          control,
-          name: 'confirmPassword',
-        }}
-        inputProps={{
-          textContentType: 'password',
-          secureTextEntry: true,
-        }}
-      />
+        <ControlledInput
+          label="Confirmar senha"
+          errorMessage={errors.password?.message}
+          controllerProps={{
+            control,
+            name: 'confirmPassword',
+          }}
+          inputProps={{
+            textContentType: 'password',
+            secureTextEntry: true,
+          }}
+        />
 
-      <Button
-        title="Registrar"
-        text="Registrar"
-        onPress={handleSubmit(registerUser)}
-      />
-      <LinkButton text="Entrar" variant="outlined" href={APP_ROUTES.LOGIN} />
+        <Button
+          title="Registrar"
+          text="Registrar"
+          onPress={handleSubmit(registerUser)}
+        />
+        <LinkButton text="Entrar" variant="outlined" href={APP_ROUTES.LOGIN} />
+      </View>
     </Container>
   );
 }
