@@ -13,7 +13,6 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
         tabBarStyle: {
           backgroundColor: COLORS.BLUE_100,
         },
@@ -21,6 +20,7 @@ export default function TabsLayout() {
     >
       <Tabs.Screen
         options={{
+          headerTitle: 'Encontrar serviços',
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => (
             <ListDashes
@@ -34,9 +34,10 @@ export default function TabsLayout() {
 
       <Tabs.Screen
         options={{
+          headerTitle: 'Registrar meu negócio',
           tabBarShowLabel: false,
           tabBarButton: ({ to }) => {
-            if (path === APP_ROUTES.MY_BUSINESS) {
+            if (path !== APP_ROUTES.REGISTER_BUSINESS) {
               return (
                 <TouchableOpacity
                   className={`
@@ -58,6 +59,7 @@ export default function TabsLayout() {
 
       <Tabs.Screen
         options={{
+          headerTitle: 'Meus negócios',
           tabBarShowLabel: false,
           tabBarIcon: ({ focused }) => (
             <Briefcase
