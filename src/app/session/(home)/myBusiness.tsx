@@ -6,7 +6,7 @@ import { ScrollView } from 'react-native';
 export default function MyBusiness() {
   return (
     <Container>
-      <ScrollView className="w-full px-6">
+      <ScrollView className="w-full px-5 pt-5">
         <BusinessCard
           redirectTo={APP_ROUTES.HOME}
           imageUrl="https://avatars.githubusercontent.com/u/64232527?v=4"
