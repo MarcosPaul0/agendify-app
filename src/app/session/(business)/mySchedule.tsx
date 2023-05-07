@@ -1,5 +1,6 @@
 import { Calendar } from '@components/Calendar';
 import { Container } from '@components/Container';
+import { ScheduleCard } from '@components/ScheduleCard';
 import { View, StatusBar } from 'react-native';
 
 export default function MySchedule() {
@@ -16,7 +17,9 @@ export default function MySchedule() {
         <Calendar />
       </View>
 
-      <View className="w-full flex-1 bg-GRAY_50" />
+      <View className="w-full flex-1 bg-GRAY_50 rounded-t-3xl">
+        <ScheduleCard />
+      </View>
     </Container>
   );
 }
