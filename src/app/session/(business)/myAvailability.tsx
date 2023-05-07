@@ -186,7 +186,7 @@ export default function MyAvailability() {
           />
         )}
 
-        <View className="flex-row justify-between gap-4">
+        <View className="flex-row justify-between gap-4 mb-6">
           <View className="flex-1">
             <TouchableOpacity
               className={`
