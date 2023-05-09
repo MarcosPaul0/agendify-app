@@ -4,8 +4,8 @@ import { IButtonProps } from './interfaces/buttonProps.interface';
 import { BUTTON_VARIANTS } from './types/buttonVariants.type';
 
 const BUTTON_VARIANT = {
-  [BUTTON_VARIANTS.filled]: 'bg-BLUE_500',
-  [BUTTON_VARIANTS.outlined]: 'bg-transparent',
+  [BUTTON_VARIANTS.filled]: 'h-12 bg-BLUE_500',
+  [BUTTON_VARIANTS.outlined]: 'h-11 border-2 bg-transparent',
 };
 
 const TEXT_VARIANT = {
@@ -22,7 +22,7 @@ export function Button({
   return (
     <TouchableOpacity
       className={`
-        w-full h-12 justify-center my-3 border-2
+        w-full justify-center my-3 
         border-BLUE_500 rounded-xl ${BUTTON_VARIANT[variant]}
       `}
       {...rest}
