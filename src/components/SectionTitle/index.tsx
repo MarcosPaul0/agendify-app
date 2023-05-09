@@ -1,11 +1,11 @@
 import { Text } from 'react-native';
 import { ISectionTitleProps } from './interfaces/sectionTitleProps.interface';
 
-export function SectionTitle({ title }: ISectionTitleProps) {
+export function SectionTitle({ title, margin = 'mb-5' }: ISectionTitleProps) {
   return (
     <Text
       className={`
-        w-full mb-5
+        w-full ${margin}
         text-xl font-bold text-BLUE_500
       `}
     >
