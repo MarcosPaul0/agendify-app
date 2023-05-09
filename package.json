@@ -85,6 +85,6 @@
     "metro-resolver": "^0.73.7"
   },
   "name": "scheduling",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true
 }
