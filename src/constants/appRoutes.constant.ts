@@ -5,6 +5,7 @@ export const APP_ROUTES = {
   MY_BUSINESS: '/session/myBusiness',
   REGISTER_BUSINESS: '/session/registerBusiness',
   HOME: '/session/home',
-  MY_CALENDAR: '/session/myCalendar',
+  MY_SCHEDULE: '/session/mySchedule',
   MANAGE_BUSINESS: '/session/manageBusiness',
+  MY_AVAILABILITY: '/session/myAvailability',
 } as const;

@@ -36,8 +36,8 @@ export default function RegisterBusiness() {
 
   return (
     <Container>
-      <ScrollView className="w-full px-6">
-        <SectionTitle title="Informações do negócio" />
+      <ScrollView className="w-full px-5">
+        <SectionTitle title="Informações do negócio" margin="my-5" />
 
         <ControlledInput
           errorMessage={errors.name?.message}

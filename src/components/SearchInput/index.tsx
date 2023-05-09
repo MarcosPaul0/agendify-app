@@ -11,7 +11,7 @@ export function SearchInput({
   return (
     <View
       className={`
-        h-11 pl-2.5 mb-4 flex-row items-center mx-9
+        h-11 pl-2.5 my-4 flex-row items-center mx-9
         bg-GRAY_100 border border-GRAY_500 rounded-lg
       `}
     >

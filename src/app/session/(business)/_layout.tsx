@@ -32,7 +32,7 @@ export default function TabsLayout() {
 
       <Tabs.Screen
         options={{
-          headerTitle: () => null,
+          header: () => null,
           tabBarShowLabel: false,
           headerStyle: {
             backgroundColor: COLORS.BLUE_100,
@@ -44,7 +44,7 @@ export default function TabsLayout() {
             />
           ),
         }}
-        name="myCalendar"
+        name="mySchedule"
       />
 
       <Tabs.Screen
@@ -57,6 +57,18 @@ export default function TabsLayout() {
           tabBarButton: () => null,
         }}
         name="manageBusiness"
+      />
+
+      <Tabs.Screen
+        options={{
+          headerTitle: 'Disponibilidade',
+          tabBarShowLabel: false,
+          headerStyle: {
+            backgroundColor: COLORS.BLUE_100,
+          },
+          tabBarButton: () => null,
+        }}
+        name="myAvailability"
       />
     </Tabs>
   );

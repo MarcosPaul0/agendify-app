@@ -20,7 +20,7 @@ export default function SearchBusiness() {
         placeholder="Buscar serviço"
       />
 
-      <ScrollView className="w-full px-6">
+      <ScrollView className="w-full px-5">
         <BusinessCard
           redirectTo={APP_ROUTES.HOME}
           favoriteIsActive
