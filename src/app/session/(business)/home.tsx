@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 
 export default function Home() {
   return (
-    <Container hasMarginTop={false}>
+    <Container>
       <View className="w-full bg-BLUE_100 pb-10 items-center">
         <Image
           source="https://avatars.githubusercontent.com/u/64232527?v=4"

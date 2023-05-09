@@ -6,9 +6,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@components/Button';
 import { Logo } from '@assets/icons/Logo';
 import { LinkButton } from '@components/LinkButton';
-import { Stack, useRouter } from 'expo-router';
+import { SplashScreen, Stack, useRouter } from 'expo-router';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { Container } from '@components/Container';
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_700Bold,
+} from '@expo-google-fonts/roboto';
 import packageInfo from '../../package.json';
 
 const loginFormValidationSchema = z.object({
@@ -19,6 +24,11 @@ const loginFormValidationSchema = z.object({
 type TLoginFormData = z.infer<typeof loginFormValidationSchema>;
 
 export default function Login() {
+  const [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+    Roboto_700Bold,
+  });
+
   const router = useRouter();
 
   const {
@@ -32,6 +42,10 @@ export default function Login() {
   async function login() {
     // TODO adicionar integração com a API
     router.push(APP_ROUTES.SEARCH_BUSINESS);
+  }
+
+  if (!fontsLoaded) {
+    return <SplashScreen />;
   }
 
   return (
