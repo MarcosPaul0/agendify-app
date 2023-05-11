@@ -1,10 +1,11 @@
+import { AddressForm } from '@components/AddressForm';
 import { Button } from '@components/Button';
 import { Container } from '@components/Container';
 import { ControlledInput } from '@components/Input';
 import { SectionTitle } from '@components/SectionTitle';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { ScrollView, View } from 'react-native';
+import { useForm, FormProvider } from 'react-hook-form';
+import { ScrollView } from 'react-native';
 import { z } from 'zod';
 
 const registerBusinessValidationSchema = z.object({
@@ -22,111 +23,59 @@ type TRegisterBusinessFormData = z.infer<
 >;
 
 export default function RegisterBusiness() {
+  const formMethods = useForm<TRegisterBusinessFormData>({
+    resolver: zodResolver(registerBusinessValidationSchema),
+  });
+
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<TRegisterBusinessFormData>({
-    resolver: zodResolver(registerBusinessValidationSchema),
-  });
+  } = formMethods;
 
   async function registerBusiness() {
     // TODO adicionar integração com a API
   }
 
   return (
-    <Container>
-      <ScrollView className="w-full px-5">
-        <SectionTitle title="Informações do negócio" margin="my-5" />
+    <FormProvider {...formMethods}>
+      <Container>
+        <ScrollView className="w-full px-5">
+          <SectionTitle title="Informações do negócio" margin="my-5" />
 
-        <ControlledInput
-          errorMessage={errors.name?.message}
-          label="Nome do negócio"
-          controllerProps={{
-            control,
-            name: 'name',
-          }}
-        />
-
-        <ControlledInput
-          errorMessage={errors.description?.message}
-          label="Descrição"
-          inputProps={{
-            placeholder: 'Descrição do negócio',
-            numberOfLines: 3,
-            textAlignVertical: 'top',
-            multiline: true,
-          }}
-          controllerProps={{
-            control,
-            name: 'description',
-          }}
-        />
-
-        <SectionTitle title="Informações de endereço" />
-
-        <ControlledInput
-          errorMessage={errors.postalCode?.message}
-          label="CEP"
-          controllerProps={{
-            control,
-            name: 'postalCode',
-          }}
-        />
-
-        <View className="flex-row">
           <ControlledInput
-            errorMessage={errors.city?.message}
-            label="Cidade"
+            errorMessage={errors.name?.message}
+            label="Nome do negócio"
             controllerProps={{
               control,
-              name: 'city',
+              name: 'name',
             }}
-            containerStyle="flex-1"
           />
 
           <ControlledInput
-            errorMessage={errors.state?.message}
-            label="Estado"
-            controllerProps={{
-              control,
-              name: 'state',
-            }}
-            containerStyle="w-1/4 ml-4"
-          />
-        </View>
-
-        <View className="flex-row">
-          <ControlledInput
-            errorMessage={errors.street?.message}
-            label="Logradouro"
+            errorMessage={errors.description?.message}
+            label="Descrição"
             inputProps={{
-              placeholder: 'Rua, Avenida, Travessa...',
+              placeholder: 'Descrição do negócio',
+              numberOfLines: 3,
+              textAlignVertical: 'top',
+              multiline: true,
             }}
             controllerProps={{
               control,
-              name: 'street',
+              name: 'description',
             }}
-            containerStyle="flex-1"
           />
 
-          <ControlledInput
-            errorMessage={errors.number?.message}
-            label="Número"
-            controllerProps={{
-              control,
-              name: 'number',
-            }}
-            containerStyle="w-1/4 ml-4"
-          />
-        </View>
+          <AddressForm />
 
-        <Button
-          title="addBusiness"
-          text="Adicionar negócio"
-          onPress={handleSubmit(registerBusiness)}
-        />
-      </ScrollView>
-    </Container>
+          <Button
+            title="addBusiness"
+            text="Adicionar negócio"
+            onPress={handleSubmit(registerBusiness)}
+          />
+        </ScrollView>
+      </Container>
+    </FormProvider>
   );
 }
