@@ -18,15 +18,15 @@ export function ScheduleCard() {
   return (
     <TouchableOpacity
       className={`
-        bg-GRAY_50 overflow-hidden border-b 
-        animate-bounce border-BLUE_500
+        bg-GRAY_100 overflow-hidden border rounded-2xl 
+        animate-bounce border-BLUE_500 mx-5 my-2
       `}
       onPress={handleToggleSchedule}
     >
-      <View className="h-12 flex-row">
+      <View className="h-11 flex-row">
         <View
           className={`
-            px-3 bg-BLUE_500 h-12 flex-row items-center
+            px-3 bg-BLUE_500 h-11 flex-row items-center
             ${isOpen ? 'rounded-br-2xl' : ''}
           `}
         >
@@ -41,13 +41,14 @@ export function ScheduleCard() {
 
         <View
           className={`
-            h-12 px-3 flex-1
+            h-11 px-3 flex-1
             flex-row items-center
           `}
         >
           <Text
             className={`
              text-base font-bold text-BLUE_900
+             flex-1
           `}
           >
             Marcos Paulo Pereira
@@ -56,7 +57,7 @@ export function ScheduleCard() {
 
         <View
           className={`
-            h-12 flex-row items-center px-5
+            h-11 flex-row items-center px-5
             transition-all ease-in duration-300
             ${isOpen ? 'rotate-90' : ''}
           `}
