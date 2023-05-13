@@ -100,12 +100,24 @@ export function Calendar() {
         </TouchableOpacity>
       </View>
 
-      <View className="grid w-full grid-rows-6 gap-0.5">
+      <View className="grid w-full grid-rows-7 gap-0.5">
+        <View className="flex-row justify-center gap-x-3">
+          <Text className="w-8 text-center font-bold text-BLUE_700">dom</Text>
+          <Text className="w-8 text-center font-bold text-BLUE_700">seg</Text>
+          <Text className="w-8 text-center font-bold text-BLUE_700">ter</Text>
+          <Text className="w-8 text-center font-bold text-BLUE_700">qua</Text>
+          <Text className="w-8 text-center font-bold text-BLUE_700">qui</Text>
+          <Text className="w-8 text-center font-bold text-BLUE_700">sex</Text>
+          <Text className="w-8 text-center font-bold text-BLUE_700">sab</Text>
+        </View>
         {calendarDays.map((week, weekIndex) => {
           const weekKey = `${weekIndex}-${JSON.stringify(week)}`;
 
           return (
-            <View key={weekKey} className="flex-row gap-2 justify-center">
+            <View
+              key={weekKey}
+              className="flex-row gap-x-3 gap-y-1 justify-center"
+            >
               {week.map((day, dayIndex) => {
                 const dayKey = `${weekIndex}${dayIndex}-${day.toISOString()}`;
 
