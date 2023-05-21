@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MaskedTextInputProps } from 'react-native-mask-text';
 
 import {
@@ -24,7 +25,7 @@ export interface IControlledMaskInputProps {
   label?: string;
   mask: string;
   errorMessage?: string;
-  inputProps?: MaskedTextInputProps;
+  inputProps?: Omit<MaskedTextInputProps, 'onChangeText'>;
   controllerProps: TControllerProps;
   containerStyle?: string;
 }

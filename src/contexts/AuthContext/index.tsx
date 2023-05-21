@@ -1,54 +1,43 @@
 import { useEffect, useState, useContext, createContext } from 'react';
-import { isAxiosError } from 'axios';
 import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
-import { agendifyApiClient } from '@services/agendifyApiClient copy';
+import { agendifyApiClient } from '@services/agendifyApiClient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { STORAGE_ITEMS } from '@constants/storageItems.constant';
 import { useRouter } from 'expo-router';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
-import { IErrorResponse } from '@app/interfaces/errorResponse.interface';
+import { useNotify } from '@hooks/useNotify';
+import { IErrorResponse } from '@utils/errorHandler/interfaces/errorResponse.interface';
+import { errorHandler } from '@utils/errorHandler';
+import { HTTP_STATUS } from '@constants/httpStatus.constant';
 import { IAuthContextProviderProps } from './interfaces/authContextProviderProps.interface';
+import { IAuthContextData } from './interfaces/authContextData.interface';
+import { IUserData } from './interfaces/userData.interface';
+import { ILoginParams } from './interfaces/loginParams.interface';
 
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  cpf: string;
-}
-
-interface LoginParams {
-  login: string;
-  password: string;
-}
-
-interface AuthContextData {
-  user: User | null;
-  isAuthenticated: boolean;
-  login: (data: LoginParams) => Promise<void>;
-  logout: () => Promise<void>;
-}
-
-const AuthContext = createContext({} as AuthContextData);
+const AuthContext = createContext({} as IAuthContextData);
 
 export function AuthContextProvider({ children }: IAuthContextProviderProps) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<IUserData | null>(null);
   const isAuthenticated = !!user;
 
   const router = useRouter();
 
+  const { errorNotify } = useNotify();
+
   useEffect(() => {
     (async () => {
       const token = await AsyncStorage.getItem(STORAGE_ITEMS.TOKEN);
+
       if (token) {
         agendifyApiClient.defaults.headers.Authorization = `Bearer ${token}`;
 
         try {
-          const { data } = await agendifyApiClient.get<User>(
+          const { data } = await agendifyApiClient.get<IUserData>(
             AGENDIFY_API_ROUTES.ME
           );
           setUser(data);
 
-          router.push(APP_ROUTES.HOME);
+          router.push(APP_ROUTES.SEARCH_BUSINESS);
         } catch {
           await AsyncStorage.removeItem(STORAGE_ITEMS.TOKEN);
 
@@ -60,12 +49,31 @@ export function AuthContextProvider({ children }: IAuthContextProviderProps) {
     })();
   }, []);
 
-  async function login({ login, password }: LoginParams) {
+  function catchLoginError(error: IErrorResponse) {
+    const { statusCode } = error;
+
+    switch (statusCode) {
+      case HTTP_STATUS.UNAUTHORIZED:
+        errorNotify('Email ou senha inválido');
+        break;
+      case HTTP_STATUS.FORBIDDEN:
+        errorNotify('Confirme seu email primeiro');
+        break;
+      case HTTP_STATUS.INTERNAL_SERVER_ERROR:
+        errorNotify('Erro interno do servidor');
+        break;
+      default:
+        errorNotify('Ocorreu algum erro tente novamente mais tarde');
+        break;
+    }
+  }
+
+  async function login(loginData: ILoginParams) {
     try {
-      const response = await agendifyApiClient.post(AGENDIFY_API_ROUTES.LOGIN, {
-        login,
-        password,
-      });
+      const response = await agendifyApiClient.post(
+        AGENDIFY_API_ROUTES.LOGIN,
+        loginData
+      );
 
       const { token } = response.data;
 
@@ -73,40 +81,18 @@ export function AuthContextProvider({ children }: IAuthContextProviderProps) {
 
       await AsyncStorage.setItem(STORAGE_ITEMS.TOKEN, token);
 
-      const { data } = await agendifyApiClient.get<User>(
+      const { data } = await agendifyApiClient.get<IUserData>(
         AGENDIFY_API_ROUTES.ME
       );
 
       setUser(data);
 
-      router.push(APP_ROUTES.HOME);
+      router.push(APP_ROUTES.SEARCH_BUSINESS);
     } catch (error) {
-      if (isAxiosError(error)) {
-        const { statusCode } = error.response?.data as IErrorResponse;
-
-        console.log(statusCode);
-
-        // switch (statusCode) {
-        //   case 401:
-        //     errorNotify({
-        //       title: 'Error ao logar',
-        //       message: 'Email ou senha inválido',
-        //     });
-        //     break;
-        //   case 403:
-        //     errorNotify({
-        //       title: 'Error ao logar',
-        //       message: 'Confirme seu email primeiro',
-        //     });
-        //     break;
-        //   default:
-        //     errorNotify({
-        //       title: 'Error ao logar',
-        //       message: 'Ocorreu algum erro tente novamente mais tarde',
-        //     });
-        //     break;
-        // }
-      }
+      errorHandler({
+        error,
+        catchAxiosError: catchLoginError,
+      });
     }
   }
 

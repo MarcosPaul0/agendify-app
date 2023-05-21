@@ -4,4 +4,5 @@ export interface IAddressFormData {
   state: string;
   street: string;
   number: string;
+  district: string;
 }

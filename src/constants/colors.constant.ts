@@ -19,6 +19,6 @@ export const COLORS = {
   BLUE_200: '#A6B9DB',
   BLUE_100: '#C1D1EA',
   SUCCESS: '#3DD54C',
-  ERROR: '#F82828',
+  ERROR: '#DC2626',
   WARNING: '#FFD015',
 } as const;

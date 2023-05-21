@@ -1,5 +1,6 @@
+import { BASE_URL } from '@constants/baseUrl.constant';
 import axios from 'axios';
 
 export const agendifyApiClient = axios.create({
-  baseURL: 'http://localhost:3333',
+  baseURL: BASE_URL,
 });

@@ -1,3 +1,4 @@
+import { HeaderMenu } from '@components/HeaderMenu';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { COLORS } from '@constants/colors.constant';
 import { useRouter, usePathname } from 'expo-router';
@@ -21,7 +22,14 @@ export default function TabsLayout() {
       <Tabs.Screen
         options={{
           headerTitle: 'Encontrar serviços',
-          tabBarShowLabel: false,
+          headerRight: () => <HeaderMenu />,
+          headerStyle: {
+            backgroundColor: COLORS.BLUE_100,
+          },
+          tabBarLabel: 'Buscar serviços',
+          tabBarLabelStyle: {
+            color: COLORS.BLUE_800,
+          },
           tabBarIcon: ({ focused }) => (
             <ListDashes
               size={32}
@@ -35,9 +43,16 @@ export default function TabsLayout() {
       <Tabs.Screen
         options={{
           headerTitle: 'Registrar meu negócio',
+          headerRight: () => <HeaderMenu />,
+          headerStyle: {
+            backgroundColor: COLORS.BLUE_100,
+          },
           tabBarShowLabel: false,
           tabBarButton: ({ to }) => {
-            if (path !== APP_ROUTES.REGISTER_BUSINESS) {
+            if (
+              path === APP_ROUTES.SEARCH_BUSINESS ||
+              path === APP_ROUTES.MY_BUSINESS_LIST
+            ) {
               return (
                 <TouchableOpacity
                   className={`
@@ -60,7 +75,14 @@ export default function TabsLayout() {
       <Tabs.Screen
         options={{
           headerTitle: 'Meus negócios',
-          tabBarShowLabel: false,
+          headerRight: () => <HeaderMenu />,
+          headerStyle: {
+            backgroundColor: COLORS.BLUE_100,
+          },
+          tabBarLabel: 'Meus negócios',
+          tabBarLabelStyle: {
+            color: COLORS.BLUE_800,
+          },
           tabBarIcon: ({ focused }) => (
             <Briefcase
               size={32}

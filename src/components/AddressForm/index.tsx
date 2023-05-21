@@ -59,15 +59,28 @@ export function AddressForm() {
     <>
       <SectionTitle title="Informações de endereço" />
 
-      <ControlledMaskInput
-        errorMessage={errors.postalCode?.message}
-        label="CEP"
-        controllerProps={{
-          control,
-          name: 'postalCode',
-        }}
-        mask="99999-999"
-      />
+      <View className="flex-row">
+        <ControlledMaskInput
+          errorMessage={errors.postalCode?.message}
+          label="CEP"
+          controllerProps={{
+            control,
+            name: 'postalCode',
+          }}
+          mask="99999-999"
+          containerStyle="flex-1"
+        />
+
+        <ControlledInput
+          errorMessage={errors.district?.message}
+          label="Bairro"
+          controllerProps={{
+            control,
+            name: 'district',
+          }}
+          containerStyle="flex-1 ml-4"
+        />
+      </View>
 
       <View className="flex-row">
         <ControlledInput
