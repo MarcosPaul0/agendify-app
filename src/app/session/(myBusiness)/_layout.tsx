@@ -1,9 +1,14 @@
 import { HeaderMenu } from '@components/HeaderMenu';
 import { COLORS } from '@constants/colors.constant';
+import { useSearchParams } from 'expo-router';
 import { Tabs } from 'expo-router/tabs';
 import { Calendar, House } from 'phosphor-react-native';
 
 export default function TabsLayout() {
+  const params = useSearchParams();
+
+  const businessId = params?.businessId as string;
+
   return (
     <Tabs
       screenOptions={{
@@ -15,11 +20,14 @@ export default function TabsLayout() {
       <Tabs.Screen
         options={{
           headerTitle: () => null,
-          tabBarShowLabel: false,
           headerStyle: {
             backgroundColor: COLORS.BLUE_100,
           },
-          headerRight: () => <HeaderMenu />,
+          headerRight: () => <HeaderMenu businessId={businessId} />,
+          tabBarLabel: 'Meu negócio',
+          tabBarLabelStyle: {
+            color: COLORS.BLUE_800,
+          },
           tabBarIcon: ({ focused }) => (
             <House
               size={32}
@@ -27,15 +35,18 @@ export default function TabsLayout() {
             />
           ),
         }}
-        name="home"
+        name="myBusiness/[businessId]"
       />
 
       <Tabs.Screen
         options={{
           header: () => null,
-          tabBarShowLabel: false,
           headerStyle: {
             backgroundColor: COLORS.BLUE_100,
+          },
+          tabBarLabel: 'Agenda',
+          tabBarLabelStyle: {
+            color: COLORS.BLUE_800,
           },
           tabBarIcon: ({ focused }) => (
             <Calendar
@@ -50,7 +61,6 @@ export default function TabsLayout() {
       <Tabs.Screen
         options={{
           headerTitle: 'Dados do meu negócio',
-          tabBarShowLabel: false,
           headerStyle: {
             backgroundColor: COLORS.BLUE_100,
           },
@@ -62,7 +72,6 @@ export default function TabsLayout() {
       <Tabs.Screen
         options={{
           headerTitle: 'Disponibilidade',
-          tabBarShowLabel: false,
           headerStyle: {
             backgroundColor: COLORS.BLUE_100,
           },

@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@components/Button';
 import { Logo } from '@assets/icons/Logo';
 import { LinkButton } from '@components/LinkButton';
-import { SplashScreen, Stack, useRouter } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { Container } from '@components/Container';
 import {
@@ -14,11 +14,14 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
+import { useAuthContext } from '@contexts/AuthContext';
 import packageInfo from '../../package.json';
 
 const loginFormValidationSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
+  login: z
+    .string({ required_error: 'Campo obrigatório' })
+    .email('Email inválido'),
+  password: z.string({ required_error: 'Campo obrigatório' }),
 });
 
 type TLoginFormData = z.infer<typeof loginFormValidationSchema>;
@@ -29,20 +32,15 @@ export default function Login() {
     Roboto_700Bold,
   });
 
-  const router = useRouter();
-
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<TLoginFormData>({
     resolver: zodResolver(loginFormValidationSchema),
   });
 
-  async function login() {
-    // TODO adicionar integração com a API
-    router.push(APP_ROUTES.SEARCH_BUSINESS);
-  }
+  const { login } = useAuthContext();
 
   if (!fontsLoaded) {
     return <SplashScreen />;
@@ -58,10 +56,10 @@ export default function Login() {
       <View className="w-full px-6">
         <ControlledInput
           label="Email"
-          errorMessage={errors.email?.message}
+          errorMessage={errors.login?.message}
           controllerProps={{
             control,
-            name: 'email',
+            name: 'login',
           }}
           inputProps={{
             textContentType: 'emailAddress',
@@ -81,7 +79,12 @@ export default function Login() {
           }}
         />
 
-        <Button title="Entrar" text="Entrar" onPress={handleSubmit(login)} />
+        <Button
+          title="Entrar"
+          text="Entrar"
+          onPress={handleSubmit(login)}
+          isLoading={isSubmitting}
+        />
         <LinkButton
           text="Registrar-se"
           variant="outlined"
