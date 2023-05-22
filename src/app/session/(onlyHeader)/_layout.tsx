@@ -5,6 +5,10 @@ export default function StackLayout() {
   return (
     <Stack
       screenOptions={{
+        contentStyle: {
+          elevation: 0,
+          shadowOpacity: 0,
+        },
         headerStyle: {
           backgroundColor: COLORS.BLUE_100,
         },
