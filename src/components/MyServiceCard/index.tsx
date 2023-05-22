@@ -17,7 +17,7 @@ export function MyServiceCard({ service, isLastItem }: IMyServiceCardProps) {
     <TouchableOpacity
       onPress={navigateToManageService}
       className={`
-        rounded-lg bg-GRAY_100 border border-GRAY_500
+        rounded-lg bg-GRAY_100 border border-GRAY_500 w-40
         py-2 px-4 items-center ml-2 h-40 ${isLastItem ? 'mr-5' : ''}
       `}
     >
@@ -29,13 +29,19 @@ export function MyServiceCard({ service, isLastItem }: IMyServiceCardProps) {
       <View className="w-full">
         <View className="w-full border-b border-b-GRAY_500 my-2">
           <Text className="font-bold text-BLUE_900 text-md text-center">
-            Corte masculino
+            {service.name}
           </Text>
         </View>
 
         <View className="flex-row items-center">
-          <Tag text="R$ 15,00" marginLeftIsActive={false} size="sm" />
-          <Tag text="30 min" size="sm" />
+          {service.price && (
+            <Tag
+              text={`R$ ${String(service.price.toFixed(2)).replace('.', ',')}`}
+              marginLeftIsActive={false}
+              size="sm"
+            />
+          )}
+          <Tag text={`${service.duration} h`} size="sm" />
         </View>
       </View>
     </TouchableOpacity>

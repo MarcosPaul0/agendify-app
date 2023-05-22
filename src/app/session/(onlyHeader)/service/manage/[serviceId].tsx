@@ -2,6 +2,7 @@ import { BusinessImagePicker } from '@components/BusinessImagePicker';
 import { Button } from '@components/Button';
 import { Container } from '@components/Container';
 import { ControlledMaskInput } from '@components/ControlledMaskInput';
+import { DeleteAlert } from '@components/DeleteAlert';
 import { ControlledInput } from '@components/Input';
 import { SectionTitle } from '@components/SectionTitle';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
@@ -125,6 +126,32 @@ export default function RegisterService() {
     }
   }
 
+  function catchDeleteServiceError(error: IErrorResponse) {
+    switch (error.statusCode) {
+      case HTTP_STATUS.INTERNAL_SERVER_ERROR:
+        errorNotify('Erro interno do servidor');
+        break;
+      default:
+        errorNotify('Erro ao deltar o serviço');
+        break;
+    }
+  }
+
+  async function deleteService() {
+    try {
+      const response = await agendifyApiClient.delete<IServiceResponse>(
+        `${AGENDIFY_API_ROUTES.SERVICE}/${serviceId}`
+      );
+
+      const businessId = response.data.business_id;
+
+      successNotify('Serviço deletado com sucesso');
+      router.push(`${APP_ROUTES.MANAGE_MY_BUSINESS}/${businessId}`);
+    } catch (error) {
+      errorHandler({ error, catchAxiosError: catchDeleteServiceError });
+    }
+  }
+
   useFocusEffect(
     useCallback(() => {
       (async () => {
@@ -141,7 +168,7 @@ export default function RegisterService() {
           setImageUrl(`${BASE_URL}/${service.image_url}`);
 
           if (service.price) {
-            setValue('price', String(service.price));
+            setValue('price', String(service.price).replace('.', ','));
           }
         } catch {
           router.push(APP_ROUTES.MY_BUSINESS_LIST);
@@ -173,7 +200,7 @@ export default function RegisterService() {
           <View className="flex-row">
             <ControlledInput
               errorMessage={errors.price?.message}
-              label="Preço"
+              label="Preço (R$)"
               controllerProps={{
                 control,
                 name: 'price',
@@ -187,7 +214,7 @@ export default function RegisterService() {
             <ControlledMaskInput
               mask="99:99"
               errorMessage={errors.duration?.message}
-              label="Tempo estimado"
+              label="Tempo (hh:mm)"
               controllerProps={{
                 control,
                 name: 'duration',
@@ -219,6 +246,14 @@ export default function RegisterService() {
             text="Atualizar serviço"
             onPress={handleSubmit(registerBusiness)}
             isLoading={isSubmitting}
+          />
+
+          <DeleteAlert
+            onConfirm={deleteService}
+            onCancel={() => null}
+            buttonText="Deletar serviço"
+            text="Deltar um serviço é uma ação definitiva, após a confimação todos os dados relacionado a seu negócio serão perdidos"
+            title="Deletar serviço?"
           />
         </ScrollView>
       </Container>

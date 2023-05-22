@@ -37,7 +37,7 @@ export default function RegisterUser() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<TRegisterUserFormData>({
     resolver: zodResolver(registerUserFormValidationSchema),
   });
@@ -135,6 +135,7 @@ export default function RegisterUser() {
             title="Registrar"
             text="Registrar"
             onPress={handleSubmit(registerUser)}
+            isLoading={isSubmitting}
           />
           <LinkButton
             text="Entrar"

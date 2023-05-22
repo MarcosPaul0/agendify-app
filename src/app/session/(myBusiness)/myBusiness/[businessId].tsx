@@ -102,7 +102,7 @@ export default function MyBusiness() {
           <View
             className={`
               rounded-lg bg-GRAY_100 border border-GRAY_500
-              items-center justify-center  h-40 px-4
+              items-center justify-center h-40 px-4
             `}
           >
             <Plus size={42} color={COLORS.GRAY_600} />

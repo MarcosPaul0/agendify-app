@@ -24,9 +24,14 @@ export function ServiceCard({ service }: IServiceCardProps) {
           </Text>
         </View>
 
-        <View className="flex-row items-center">
-          {service?.price && <Tag text={`R$ ${service.price}`} />}
-          <Tag text={`${service.duration} min`} />
+        <View className="w-full flex-row items">
+          {service.price && (
+            <Tag
+              text={`R$ ${String(service.price.toFixed(2)).replace('.', ',')}`}
+              size="sm"
+            />
+          )}
+          <Tag text={`${service.duration} h`} size="sm" />
         </View>
       </View>
     </TouchableOpacity>

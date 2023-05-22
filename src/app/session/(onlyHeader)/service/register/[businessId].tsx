@@ -32,7 +32,7 @@ const registerServiceValidationSchema = z.object({
     .optional()
     .transform((price) => {
       if (price) {
-        return price.replace(/./g, '').replace(',', '.');
+        return price.replace(/\./g, '').replace(',', '.');
       }
 
       return price;
@@ -102,10 +102,7 @@ export default function RegisterService() {
       }
 
       if (registerBusinessData.price) {
-        registerBusinessFormData.append(
-          'price',
-          JSON.stringify(registerBusinessData.price)
-        );
+        registerBusinessFormData.append('price', registerBusinessData.price);
       }
 
       registerBusinessFormData.append('name', registerBusinessData.name);
@@ -162,7 +159,7 @@ export default function RegisterService() {
           <View className="flex-row">
             <ControlledInput
               errorMessage={errors.price?.message}
-              label="Preço"
+              label="Preço (R$)"
               controllerProps={{
                 control,
                 name: 'price',
@@ -176,7 +173,7 @@ export default function RegisterService() {
             <ControlledMaskInput
               mask="99:99"
               errorMessage={errors.duration?.message}
-              label="Tempo estimado"
+              label="Tempo (hh:mm)"
               controllerProps={{
                 control,
                 name: 'duration',

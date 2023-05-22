@@ -74,7 +74,7 @@ export default function ViewBusiness() {
 
   return (
     <Container>
-      <View className="w-full bg-BLUE_100 py-10 items-center">
+      <View className="w-full bg-BLUE_100 py-10 items-center mb-5">
         <Image
           source={`${BASE_URL}/${business.image_url}`}
           className={`
@@ -92,7 +92,7 @@ export default function ViewBusiness() {
       ) : (
         <FlatList
           data={services}
-          className="flex-1 w-full p-5"
+          className="flex-1 w-full px-5"
           renderItem={({ item }) => (
             <ServiceCard
               key={item.id}
