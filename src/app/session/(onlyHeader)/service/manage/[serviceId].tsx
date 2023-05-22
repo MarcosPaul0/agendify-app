@@ -111,16 +111,22 @@ export default function RegisterService() {
     }
   }
 
-  async function registerBusiness(updateServiceData: TUpdateServiceFormData) {
+  async function registerBusiness({
+    description,
+    duration,
+    name,
+  }: TUpdateServiceFormData) {
     try {
-      await agendifyApiClient.patch(
+      const response = await agendifyApiClient.patch<IServiceResponse>(
         `${AGENDIFY_API_ROUTES.SERVICE}/${serviceId}`,
-        updateServiceData
+        { description, duration, name }
       );
+
+      const businessId = response.data.business_id;
 
       successNotify('Serviço atualizado com sucesso');
 
-      router.push(`${APP_ROUTES.MY_BUSINESS_LIST}/${serviceId}`);
+      router.push(`${APP_ROUTES.VIEW_MY_BUSINESS}/${businessId}`);
     } catch (error) {
       errorHandler({ error, catchAxiosError: catchUpdateServiceError });
     }
