@@ -3,7 +3,7 @@ export const AGENDIFY_API_ROUTES = {
   BUSINESS: '/business',
   SERVICE: '/services',
   MY_BUSINESS: '/business/my-business',
-  LOGIN: '/',
+  LOGIN: '/login',
   ME: '/users/me',
   SERVICES_BY_BUSINESS: '/services/get-by-business',
   UPDATE_SERVICE_IMAGE: '/services/setImage',

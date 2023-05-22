@@ -101,7 +101,7 @@ export function AuthContextProvider({ children }: IAuthContextProviderProps) {
 
     await AsyncStorage.removeItem(STORAGE_ITEMS.TOKEN);
 
-    router.push(AGENDIFY_API_ROUTES.LOGIN);
+    router.push(APP_ROUTES.LOGIN);
   }
 
   return (
