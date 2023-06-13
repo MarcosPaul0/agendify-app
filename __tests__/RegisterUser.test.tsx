@@ -1,7 +1,7 @@
 import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import RegisterUser from '@app/registerUser';
 import { ToastOptions } from 'react-native-toast-notifications/lib/typescript/toast';
-import { defaultToastParams } from './mocks/defautlToastParams.mock';
+import { defaultToastParams } from '../mocks/defautlToastParams.mock';
 
 jest.mock('expo-router', () => {
   const currentRouter = jest.requireActual('expo-router');
