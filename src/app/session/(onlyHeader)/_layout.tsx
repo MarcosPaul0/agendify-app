@@ -5,13 +5,10 @@ export default function StackLayout() {
   return (
     <Stack
       screenOptions={{
-        contentStyle: {
-          elevation: 0,
-          shadowOpacity: 0,
-        },
         headerStyle: {
           backgroundColor: COLORS.BLUE_100,
         },
+        headerShadowVisible: false,
       }}
     >
       <Stack.Screen
@@ -34,10 +31,7 @@ export default function StackLayout() {
         name="manageMyBusiness/[businessId]"
       />
 
-      <Stack.Screen
-        options={{ title: 'Serviços oferecidos' }}
-        name="viewBusiness/[businessId]"
-      />
+      <Stack.Screen options={{ title: '' }} name="viewBusiness/[businessId]" />
     </Stack>
   );
 }

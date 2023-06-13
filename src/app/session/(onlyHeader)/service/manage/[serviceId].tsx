@@ -4,6 +4,7 @@ import { Container } from '@components/Container';
 import { ControlledMaskInput } from '@components/ControlledMaskInput';
 import { DeleteAlert } from '@components/DeleteAlert';
 import { ControlledInput } from '@components/Input';
+import { MoneyInput } from '@components/MoneyInput';
 import { SectionTitle } from '@components/SectionTitle';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { BASE_URL } from '@constants/baseUrl.constant';
@@ -14,6 +15,7 @@ import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
 import { agendifyApiClient } from '@services/agendifyApiClient';
 import { errorHandler } from '@utils/errorHandler';
 import { IErrorResponse } from '@utils/errorHandler/interfaces/errorResponse.interface';
+import { formatPriceValue } from '@utils/formatPriceValue';
 import { useRouter, useSearchParams, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -55,12 +57,16 @@ export default function RegisterService() {
 
   const formMethods = useForm<TUpdateServiceFormData>({
     resolver: zodResolver(updateServiceValidationSchema),
+    defaultValues: {
+      price: '',
+    },
   });
 
   const {
     control,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors, isSubmitting },
   } = formMethods;
 
@@ -138,7 +144,7 @@ export default function RegisterService() {
         errorNotify('Erro interno do servidor');
         break;
       default:
-        errorNotify('Erro ao deltar o serviço');
+        errorNotify('Erro ao deletar o serviço');
         break;
     }
   }
@@ -174,7 +180,7 @@ export default function RegisterService() {
           setImageUrl(`${BASE_URL}/${service.image_url}`);
 
           if (service.price) {
-            setValue('price', String(service.price).replace('.', ','));
+            setValue('price', formatPriceValue(service.price));
           }
         } catch {
           router.push(APP_ROUTES.MY_BUSINESS_LIST);
@@ -182,6 +188,8 @@ export default function RegisterService() {
       })();
     }, [])
   );
+
+  const price = watch('price');
 
   return (
     <FormProvider {...formMethods}>
@@ -204,17 +212,15 @@ export default function RegisterService() {
           />
 
           <View className="flex-row">
-            <ControlledInput
+            <MoneyInput
+              label="Preço"
               errorMessage={errors.price?.message}
-              label="Preço (R$)"
-              controllerProps={{
-                control,
-                name: 'price',
-              }}
-              inputProps={{
-                keyboardType: 'numeric',
-              }}
+              onChangeText={(value) =>
+                setValue('price', formatPriceValue(value))
+              }
+              keyboardType="numeric"
               containerStyle="flex-1"
+              value={price}
             />
 
             <ControlledMaskInput
@@ -258,7 +264,7 @@ export default function RegisterService() {
             onConfirm={deleteService}
             onCancel={() => null}
             buttonText="Deletar serviço"
-            text="Deltar um serviço é uma ação definitiva, após a confimação todos os dados relacionado a seu negócio serão perdidos"
+            text="Deltar um serviço é uma ação definitiva, após a confimação todos os dados do serviço serão perdidos"
             title="Deletar serviço?"
           />
         </ScrollView>

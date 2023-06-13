@@ -74,7 +74,7 @@ export default function ViewBusiness() {
 
   return (
     <Container>
-      <View className="w-full bg-BLUE_100 py-10 items-center mb-5">
+      <View className="w-full bg-BLUE_100 pt-4 pb-10 items-center mb-5">
         <Image
           source={`${BASE_URL}/${business.image_url}`}
           className={`
@@ -100,6 +100,7 @@ export default function ViewBusiness() {
                 id: item.id,
                 duration: item.duration,
                 imageUrl: item.image_url,
+                description: item.description,
                 name: item.name,
                 price: item.price,
               }}

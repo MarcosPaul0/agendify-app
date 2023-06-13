@@ -3,6 +3,7 @@ export interface IServiceCardProps {
     id: string;
     name: string;
     price?: number;
+    description: string;
     duration?: string;
     imageUrl: string;
   };

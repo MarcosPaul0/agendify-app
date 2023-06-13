@@ -1,37 +1,30 @@
 import { TouchableOpacity, View, Text } from 'react-native';
 import { Image } from 'expo-image';
-import { Tag } from '@components/Tag';
 import { BASE_URL } from '@constants/baseUrl.constant';
 import { IServiceCardProps } from './interfaces/serviceCardProps.interface';
 
-export function ServiceCard({ service }: IServiceCardProps) {
+export function ServiceCard({ service, isLastItem }: IServiceCardProps) {
   return (
     <TouchableOpacity
       className={`
-        rounded-xl bg-GRAY_100 drop-shadow-md border
-        p-3 flex-row mb-3 border-GRAY_500
+        rounded-md bg-GRAY_100 drop-shadow-md border
+        border-GRAY_500 overflow-hidden flex-1 flex-row
+        ${isLastItem ? 'ml-5' : ''} mb-4
       `}
     >
-      <Image
-        source={`${BASE_URL}/${service.id}`}
-        className="w-16 h-16 border-2 rounded-lg border-BLUE_500"
-      />
+      <Image source={`${BASE_URL}/${service.imageUrl}`} className="w-28 h-28" />
 
-      <View className="flex-1 px-2">
-        <View className="w-full border-b border-b-GRAY_500 ml-2 mb-2">
-          <Text className="font-bold text-BLUE_900 text-base">
+      <View className="flex-1 px-2 py-1">
+        <View className="w-full mb-2">
+          <Text className="font-bold text-BLUE_600 text-base text-center">
             {service.name}
           </Text>
         </View>
 
-        <View className="w-full flex-row items">
-          {service.price && (
-            <Tag
-              text={`R$ ${String(service.price.toFixed(2)).replace('.', ',')}`}
-              size="sm"
-            />
-          )}
-          <Tag text={`${service.duration} h`} size="sm" />
+        <View className="w-full mb-2">
+          <Text className="text-GRAY_600 text-xs" numberOfLines={5}>
+            {service.description}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

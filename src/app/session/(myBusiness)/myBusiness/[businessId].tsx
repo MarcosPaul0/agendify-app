@@ -124,6 +124,7 @@ export default function MyBusiness() {
                 imageUrl: service.image_url,
                 name: service.name,
                 price: service.price,
+                description: service.description,
               }}
             />
           ))
