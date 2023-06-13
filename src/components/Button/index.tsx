@@ -31,6 +31,7 @@ export function Button({
         w-full justify-center my-3 items-center flex-row
         border-${buttonColor} rounded-xl ${BUTTON_VARIANT[variant]}
       `}
+      testID={text}
       {...rest}
     >
       {isLoading ? (

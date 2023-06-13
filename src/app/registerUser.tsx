@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@components/Button';
 import { Logo } from '@assets/icons/Logo';
 import { LinkButton } from '@components/LinkButton';
-import { Stack, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { Container } from '@components/Container';
 import { agendifyApiClient } from '@services/agendifyApiClient';
@@ -22,13 +22,42 @@ const registerUserFormValidationSchema = z
     name: z.string({ required_error: 'Campo obrigatório' }),
     email: z
       .string({ required_error: 'Campo obrigatório' })
-      .email('Email inválido'),
-    password: z.string({ required_error: 'Campo obrigatório' }),
+      .email('Email inválido')
+      .refine(
+        (password) => !(password.length > 255),
+        'Número máximo de caracteres é 255'
+      ),
+    password: z
+      .string({ required_error: 'Campo obrigatório' })
+      .refine(
+        (password) => !(password.length < 10),
+        'A senha deve ter no mínimo 10 caracteres'
+      )
+      .refine(
+        (password) => !(password.length > 255),
+        'Número máximo de caracteres é 255'
+      )
+      .refine(
+        (password) => !password.includes(' '),
+        'A senha não pode ter espaço'
+      )
+      .refine(
+        (password) =>
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[.!?$%_-])[A-Za-z\d.!?$%_-]{10,}$/.test(
+            password
+          ),
+        'A senha precisa ter pelo menos: um caractere especial, uma letra maiúscula, uma letra minúscula e um número'
+      ),
     confirmPassword: z.string({ required_error: 'Campo obrigatório' }),
   })
-  .refine((schema) => schema.password === schema.confirmPassword, {
-    message: 'As senhas não conferem',
-    path: ['confirmPassword'],
+  .superRefine((schema, ctx) => {
+    if (schema.password !== schema.confirmPassword) {
+      ctx.addIssue({
+        message: 'As senhas não conferem',
+        path: ['confirmPassword'],
+        code: 'custom',
+      });
+    }
   });
 
 type TRegisterUserFormData = z.infer<typeof registerUserFormValidationSchema>;
@@ -37,7 +66,7 @@ export default function RegisterUser() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<TRegisterUserFormData>({
     resolver: zodResolver(registerUserFormValidationSchema),
   });
@@ -64,7 +93,6 @@ export default function RegisterUser() {
       await agendifyApiClient.post(AGENDIFY_API_ROUTES.USER, registerUserData);
 
       successNotify('Usuário registrado com sucesso');
-
       router.push(APP_ROUTES.LOGIN);
     } catch (error) {
       errorHandler({
@@ -77,8 +105,6 @@ export default function RegisterUser() {
   return (
     <ScrollView className="w-full">
       <Container>
-        <Stack.Screen options={{ title: 'Overview' }} />
-
         <View className="py-20">
           <Logo />
         </View>
@@ -120,7 +146,7 @@ export default function RegisterUser() {
 
           <ControlledInput
             label="Confirmar senha"
-            errorMessage={errors.password?.message}
+            errorMessage={errors.confirmPassword?.message}
             controllerProps={{
               control,
               name: 'confirmPassword',
@@ -135,6 +161,7 @@ export default function RegisterUser() {
             title="Registrar"
             text="Registrar"
             onPress={handleSubmit(registerUser)}
+            isLoading={isSubmitting}
           />
           <LinkButton
             text="Entrar"
@@ -150,3 +177,5 @@ export default function RegisterUser() {
     </ScrollView>
   );
 }
+
+RegisterUser.displayName = 'RegisterUser';

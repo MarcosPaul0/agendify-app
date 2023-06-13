@@ -2,7 +2,7 @@ import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { COLORS } from '@constants/colors.constant';
 import { useAuthContext } from '@contexts/AuthContext';
 import { Link } from 'expo-router';
-import { Clock, Briefcase, User, List } from 'phosphor-react-native';
+import { Clock, Briefcase, User, List, SignOut } from 'phosphor-react-native';
 import { useState } from 'react';
 import {
   GestureResponderEvent,
@@ -15,7 +15,7 @@ import { Menu } from 'react-native-paper';
 import { IHeaderMenuProps } from './interfaces/headerMenuProps.interface';
 
 export function HeaderMenu({ businessId }: IHeaderMenuProps) {
-  const { user } = useAuthContext();
+  const { user, isAuthenticated, logout } = useAuthContext();
 
   const [menuIsVisible, setMenuIsVisible] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState({ x: 0, y: 0 });
@@ -79,6 +79,15 @@ export function HeaderMenu({ businessId }: IHeaderMenuProps) {
               <Text>Disponibilidade</Text>
             </View>
           </Link>
+          {isAuthenticated && (
+            <TouchableOpacity
+              className="flex-row items-center gap-2"
+              onPress={logout}
+            >
+              <SignOut size={24} color={COLORS.BLUE_900} />
+              <Text>Sair</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </Menu>
     </View>

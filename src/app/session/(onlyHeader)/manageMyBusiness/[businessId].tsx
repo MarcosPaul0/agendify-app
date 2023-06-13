@@ -133,7 +133,7 @@ export default function ManageBusiness() {
         `${AGENDIFY_API_ROUTES.BUSINESS}/${businessId}`
       );
 
-      successNotify('NEgócio deletado com sucesso');
+      successNotify('Negócio deletado com sucesso');
       router.push(APP_ROUTES.MY_BUSINESS_LIST);
     } catch (error) {
       errorHandler({ error, catchAxiosError: catchDeleteBusinessError });
@@ -184,7 +184,7 @@ export default function ManageBusiness() {
           <ControlledMaskInput
             mask="(99) 99999 9999"
             errorMessage={errors.telephone?.message}
-            label="Telefole"
+            label="Telefone"
             controllerProps={{
               control,
               name: 'telephone',

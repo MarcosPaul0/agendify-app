@@ -1,6 +1,5 @@
 import { Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
-import { Tag } from '@components/Tag';
 import { useRouter } from 'expo-router';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { BASE_URL } from '@constants/baseUrl.constant';
@@ -17,25 +16,32 @@ export function MyServiceCard({ service, isLastItem }: IMyServiceCardProps) {
     <TouchableOpacity
       onPress={navigateToManageService}
       className={`
-        rounded-lg bg-GRAY_100 border border-GRAY_500
-        py-2 px-4 items-center ml-2 h-40 ${isLastItem ? 'mr-5' : ''}
+        rounded-lg bg-GRAY_100 border border-GRAY_500 w-40
+        items-center ml-2 h-40 ${isLastItem ? 'mr-5' : ''}
+        overflow-hidden
       `}
     >
       <Image
         source={`${BASE_URL}/${service.imageUrl}`}
-        className="w-full h-20 border rounded-lg border-BLUE_500"
+        className="w-full h-20"
       />
 
-      <View className="w-full">
-        <View className="w-full border-b border-b-GRAY_500 my-2">
+      <View className="w-full px-2">
+        <View className="w-full border-b border-b-GRAY_500 mt-1 mb-2">
           <Text className="font-bold text-BLUE_900 text-md text-center">
-            Corte masculino
+            {service.name}
           </Text>
         </View>
 
         <View className="flex-row items-center">
-          <Tag text="R$ 15,00" marginLeftIsActive={false} size="sm" />
-          <Tag text="30 min" size="sm" />
+          <Text
+            numberOfLines={2}
+            className={`
+              text-xs text-GRAY_600
+            `}
+          >
+            {service.description}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

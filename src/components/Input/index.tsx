@@ -17,7 +17,7 @@ export function ControlledInput({
       <Text className="text-base text-GRAY_800 font-bold">{label}</Text>
       <Controller
         {...controllerProps}
-        render={({ field: { value, onChange } }) => (
+        render={({ field: { value, onChange, name } }) => (
           <TextInput
             {...inputProps}
             className={`
@@ -28,6 +28,7 @@ export function ControlledInput({
             selectionColor={COLORS.GRAY_800}
             value={value}
             onChangeText={onChange}
+            testID={name}
           />
         )}
       />

@@ -3,6 +3,7 @@ import { Button } from '@components/Button';
 import { Container } from '@components/Container';
 import { ControlledMaskInput } from '@components/ControlledMaskInput';
 import { ControlledInput } from '@components/Input';
+import { MoneyInput } from '@components/MoneyInput';
 import { SectionTitle } from '@components/SectionTitle';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { HTTP_STATUS } from '@constants/httpStatus.constant';
@@ -12,6 +13,7 @@ import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
 import { agendifyApiClient } from '@services/agendifyApiClient';
 import { errorHandler } from '@utils/errorHandler';
 import { IErrorResponse } from '@utils/errorHandler/interfaces/errorResponse.interface';
+import { formatPriceValue } from '@utils/formatPriceValue';
 import { useRouter, useSearchParams } from 'expo-router';
 import { FormProvider, useForm } from 'react-hook-form';
 import { ScrollView, View } from 'react-native';
@@ -32,7 +34,7 @@ const registerServiceValidationSchema = z.object({
     .optional()
     .transform((price) => {
       if (price) {
-        return price.replace(/./g, '').replace(',', '.');
+        return price.replace(/[R$ ]/g, '').replace(/\./g, '').replace(',', '.');
       }
 
       return price;
@@ -50,6 +52,9 @@ export default function RegisterService() {
 
   const formMethods = useForm<TRegisterServiceFormData>({
     resolver: zodResolver(registerServiceValidationSchema),
+    defaultValues: {
+      duration: '00:00',
+    },
   });
 
   const {
@@ -102,10 +107,7 @@ export default function RegisterService() {
       }
 
       if (registerBusinessData.price) {
-        registerBusinessFormData.append(
-          'price',
-          JSON.stringify(registerBusinessData.price)
-        );
+        registerBusinessFormData.append('price', registerBusinessData.price);
       }
 
       registerBusinessFormData.append('name', registerBusinessData.name);
@@ -138,6 +140,7 @@ export default function RegisterService() {
   }
 
   const imageUrl = watch('imageUri');
+  const price = watch('price');
 
   return (
     <FormProvider {...formMethods}>
@@ -160,23 +163,21 @@ export default function RegisterService() {
           />
 
           <View className="flex-row">
-            <ControlledInput
-              errorMessage={errors.price?.message}
+            <MoneyInput
               label="Preço"
-              controllerProps={{
-                control,
-                name: 'price',
-              }}
-              inputProps={{
-                keyboardType: 'numeric',
-              }}
+              errorMessage={errors.price?.message}
+              onChangeText={(value) =>
+                setValue('price', formatPriceValue(value))
+              }
+              keyboardType="numeric"
               containerStyle="flex-1"
+              value={price}
             />
 
             <ControlledMaskInput
               mask="99:99"
               errorMessage={errors.duration?.message}
-              label="Tempo estimado"
+              label="Tempo (hh:mm)"
               controllerProps={{
                 control,
                 name: 'duration',

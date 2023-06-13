@@ -159,7 +159,7 @@ export default function ManageBusiness() {
           <ControlledMaskInput
             mask="(99) 99999 9999"
             errorMessage={errors.telephone?.message}
-            label="Telefole"
+            label="Telefone"
             controllerProps={{
               control,
               name: 'telephone',
