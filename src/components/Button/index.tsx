@@ -9,6 +9,7 @@ export function Button({
   variant = 'filled',
   icon,
   isDanger = false,
+  width = 'w-full',
   ...rest
 }: IButtonProps) {
   const primaryButtonColor = rest.disabled ? 'BLUE_100' : 'BLUE_500';
@@ -28,7 +29,7 @@ export function Button({
   return (
     <TouchableOpacity
       className={`
-        w-full justify-center my-3 items-center flex-row
+        ${width} justify-center my-3 items-center flex-row
         border-${buttonColor} rounded-xl ${BUTTON_VARIANT[variant]}
       `}
       testID={text}

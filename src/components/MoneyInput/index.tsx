@@ -18,6 +18,7 @@ export function MoneyInput({
       <MaskedTextInput
         {...rest}
         type="currency"
+        testID="price"
         options={{
           prefix: 'R$ ',
           decimalSeparator: ',',

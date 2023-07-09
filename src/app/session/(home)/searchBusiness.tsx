@@ -8,7 +8,6 @@ import { FlatList } from 'react-native';
 import { IBusinessResponse } from 'src/interfaces/businessResponse.interface';
 import { useQuery } from 'react-query';
 import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
-import { BASE_URL } from '@constants/baseUrl.constant';
 import { useFocusEffect } from 'expo-router';
 import { Spinner } from '@components/Spinner';
 
@@ -71,9 +70,11 @@ export default function SearchBusiness() {
             <BusinessCard
               key={item.id}
               redirectTo={`${APP_ROUTES.VIEW_BUSINESS}/${item.id}`}
-              imageUrl={`${BASE_URL}/${item.image_url}`}
+              imageUrl={item.image_url}
               description={item.description}
               title={item.name}
+              rating={item.rating.averageRating}
+              totalRatings={item.rating.totalRatings}
             />
           )}
           className="w-full px-5 pb-2"

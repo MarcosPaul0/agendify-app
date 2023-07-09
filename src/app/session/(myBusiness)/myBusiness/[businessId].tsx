@@ -2,10 +2,10 @@ import { Container } from '@components/Container';
 import { MyServiceCard } from '@components/MyServiceCard';
 import { Spinner } from '@components/Spinner';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
-import { BASE_URL } from '@constants/baseUrl.constant';
 import { COLORS } from '@constants/colors.constant';
 import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
 import { agendifyApiClient } from '@services/agendifyApiClient';
+import { getImageUrl } from '@utils/getImageUrl';
 
 import { Image } from 'expo-image';
 import { Link, useRouter, useSearchParams, useFocusEffect } from 'expo-router';
@@ -17,12 +17,10 @@ import { IBusinessResponse } from 'src/interfaces/businessResponse.interface';
 import { IServiceResponse } from 'src/interfaces/serviceResponse.interface';
 
 export default function MyBusiness() {
-  const params = useSearchParams();
+  const { businessId } = useSearchParams();
   const router = useRouter();
 
   const [business, setBusiness] = useState<IBusinessResponse | null>(null);
-
-  const { businessId } = params;
 
   const {
     data: services,
@@ -78,7 +76,7 @@ export default function MyBusiness() {
     <Container>
       <View className="w-full bg-BLUE_100 pb-10 items-center">
         <Image
-          source={`${BASE_URL}/${business.image_url}`}
+          source={getImageUrl(business.image_url)}
           className={`
             h-32 w-32 rounded-full
             border-4 border-BLUE_500

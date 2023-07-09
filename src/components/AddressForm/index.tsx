@@ -37,9 +37,15 @@ export function AddressForm() {
 
           const address = response.data;
 
-          setValue('city', address.city);
-          setValue('state', address.state);
-          setValue('street', address.street);
+          if (address.city) {
+            setValue('city', address.city);
+          }
+          if (address.state) {
+            setValue('state', address.state);
+          }
+          if (address.street) {
+            setValue('street', address.street);
+          }
         } catch (error) {
           if (isAxiosError(error)) {
             if (error.status === HTTP_STATUS.NOT_FOUND) {

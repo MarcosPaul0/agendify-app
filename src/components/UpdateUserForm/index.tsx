@@ -16,11 +16,7 @@ const updateUserValidationSchema = z.object({
   name: z.string({
     required_error: 'Campo obrigatório',
   }),
-  email: z
-    .string({
-      required_error: 'Campo obrigatório',
-    })
-    .email('Email inválido'),
+  email: z.string().optional(),
 });
 
 type TUpdateUserFormData = z.infer<typeof updateUserValidationSchema>;

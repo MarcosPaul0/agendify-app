@@ -8,4 +8,7 @@ export interface IServiceCardProps {
     imageUrl: string;
   };
   isLastItem?: boolean;
+  count?: number;
+  showNumber?: boolean;
+  onPress?: () => void;
 }

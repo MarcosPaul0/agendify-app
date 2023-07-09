@@ -1,9 +1,15 @@
 import { Calendar } from '@components/Calendar';
 import { Container } from '@components/Container';
 import { ScheduleCard } from '@components/ScheduleCard';
+import { formatFullDate } from '@utils/formatFullDate';
+import { useState } from 'react';
 import { View, StatusBar, ScrollView, Text } from 'react-native';
 
 export default function MySchedule() {
+  const [activeDay, setActiveDay] = useState<Date>(new Date());
+
+  const formattedDate = formatFullDate(activeDay);
+
   return (
     <Container bgColor="blue">
       <View
@@ -14,7 +20,11 @@ export default function MySchedule() {
           w-full py-2
         `}
       >
-        <Calendar />
+        <Calendar
+          activeDay={activeDay}
+          onChangeDay={setActiveDay}
+          minDate={new Date()}
+        />
       </View>
 
       <View className="w-full flex-1 bg-GRAY_50 rounded-t-3xl relative">
@@ -30,7 +40,7 @@ export default function MySchedule() {
 
         <View className="w-full items-center p-4 drop-shadow-2xl shadow-GRAY_900">
           <Text className="font-bold text-base text-BLUE_800">
-            Quarta-feira, 10 de Janeiro de 2023
+            {formattedDate}
           </Text>
         </View>
 

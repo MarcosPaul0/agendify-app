@@ -9,9 +9,18 @@ import { z } from 'zod';
 import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ClockClockwise } from 'phosphor-react-native';
 import { formatTime } from '@utils/formatTime';
+import { useFocusEffect, useSearchParams } from 'expo-router';
+import { agendifyApiClient } from '@services/agendifyApiClient';
+import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
+import { errorHandler } from '@utils/errorHandler';
+import { IErrorResponse } from '@utils/errorHandler/interfaces/errorResponse.interface';
+import { HTTP_STATUS } from '@constants/httpStatus.constant';
+import { useNotify } from '@hooks/useNotify';
+import { IAvailabilityResponse } from 'src/interfaces/availabilityResponse.interface';
+import { WEEK_DAY } from '@constants/weekDay.constant';
 
 export type TDay =
   | 'sunday'
@@ -41,26 +50,35 @@ type TSetBusinessAvailabilityFormData = z.infer<
 >;
 
 export default function MyAvailability() {
+  const { businessId } = useSearchParams();
+  const { errorNotify, successNotify } = useNotify();
+
+  const [hasAvailability, setHasAvailability] = useState(false);
   const [showBeginTime, setShowBeginTime] = useState(false);
   const [showEndTime, setShowEndTime] = useState(false);
 
-  const { setValue, getValues, watch, handleSubmit } =
-    useForm<TSetBusinessAvailabilityFormData>({
-      resolver: zodResolver(setBusinessAvailabilityValidationSchema),
-      defaultValues: {
-        days: {
-          sunday: false,
-          monday: true,
-          tuesday: true,
-          wednesday: true,
-          thursday: true,
-          friday: true,
-          saturday: false,
-        },
-        beginTime: new Date(),
-        endTime: new Date(),
+  const {
+    setValue,
+    getValues,
+    watch,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<TSetBusinessAvailabilityFormData>({
+    resolver: zodResolver(setBusinessAvailabilityValidationSchema),
+    defaultValues: {
+      days: {
+        sunday: false,
+        monday: true,
+        tuesday: true,
+        wednesday: true,
+        thursday: true,
+        friday: true,
+        saturday: false,
       },
-    });
+      beginTime: new Date(),
+      endTime: new Date(),
+    },
+  });
 
   function handleCheckDay(day: TDay) {
     const currentDayValue = getValues(`days.${day}`);
@@ -98,9 +116,106 @@ export default function MyAvailability() {
     setShowEndTime(false);
   }
 
-  async function setAvailability() {
-    // TODO adicionar integração com a API
+  function catchSetAvailabilityError(error: IErrorResponse) {
+    switch (error.statusCode) {
+      case HTTP_STATUS.INTERNAL_SERVER_ERROR:
+        errorNotify('Erro interno do servidor');
+        break;
+      default:
+        errorNotify('Ocorreu um erro ao definir sua disponibilidade');
+        break;
+    }
   }
+
+  async function setAvailability({
+    days,
+    beginTime,
+    endTime,
+  }: TSetBusinessAvailabilityFormData) {
+    const formattedWeekDays = Object.values(days).reduce<string[]>(
+      (weekDaysAccumulator, isAvailable, day) => {
+        if (isAvailable) {
+          weekDaysAccumulator.push(String(day + 1));
+        }
+
+        return weekDaysAccumulator;
+      },
+      []
+    );
+    const formattedBeginTime = `${formatTime(beginTime)}:00`;
+    const formattedEndTime = `${formatTime(endTime)}:00`;
+
+    try {
+      if (hasAvailability) {
+        await agendifyApiClient.patch(
+          `${AGENDIFY_API_ROUTES.AVAILABILITY_BY_BUSINESS}/${businessId}`,
+          {
+            start_time: formattedBeginTime,
+            end_time: formattedEndTime,
+            weekdays: formattedWeekDays,
+          }
+        );
+      } else {
+        await agendifyApiClient.post(AGENDIFY_API_ROUTES.AVAILABILITY, {
+          business_id: businessId,
+          start_time: formattedBeginTime,
+          end_time: formattedEndTime,
+          weekdays: formattedWeekDays,
+        });
+      }
+
+      successNotify('Disponibilidade atualizada com sucesso');
+    } catch (error) {
+      errorHandler({ error, catchAxiosError: catchSetAvailabilityError });
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        try {
+          const availabilityResponse = await agendifyApiClient.get<
+            IAvailabilityResponse[]
+          >(`${AGENDIFY_API_ROUTES.AVAILABILITY_BY_BUSINESS}/${businessId}`);
+
+          const availabilityData = availabilityResponse.data;
+
+          if (availabilityData.length > 0) {
+            setHasAvailability(true);
+
+            availabilityData.forEach((availability) => {
+              const day = WEEK_DAY[availability.weekdays_id];
+
+              setValue(`days.${day}`, true);
+            });
+
+            const start = new Date();
+            const end = new Date();
+
+            const availabilityStartTime =
+              availabilityData[0].start_time.split(':');
+            const availabilityEndTime = availabilityData[0].end_time.split(':');
+
+            start.setHours(
+              Number(availabilityStartTime[0]),
+              Number(availabilityStartTime[1]),
+              Number(availabilityStartTime[2])
+            );
+            end.setHours(
+              Number(availabilityEndTime[0]),
+              Number(availabilityEndTime[1]),
+              Number(availabilityEndTime[2])
+            );
+
+            setValue('beginTime', start);
+            setValue('endTime', end);
+          }
+        } catch (error) {
+          setHasAvailability(false);
+        }
+      })();
+    }, [])
+  );
 
   const sundayIsChecked = watch('days.sunday');
   const mondayIsChecked = watch('days.monday');
@@ -228,6 +343,7 @@ export default function MyAvailability() {
           title="Confirmar disponibilidade"
           text="Confirmar disponibilidade"
           onPress={handleSubmit(setAvailability)}
+          isLoading={isSubmitting}
         />
       </ScrollView>
     </Container>
