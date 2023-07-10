@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { APP_ROUTES } from '@constants/appRoutes.constant';
-import { BASE_URL } from '@constants/baseUrl.constant';
+import { getImageUrl } from '@utils/getImageUrl';
 import { IMyServiceCardProps } from './interfaces/myServiceCardProps.interface';
 
 export function MyServiceCard({ service, isLastItem }: IMyServiceCardProps) {
@@ -21,10 +21,7 @@ export function MyServiceCard({ service, isLastItem }: IMyServiceCardProps) {
         overflow-hidden
       `}
     >
-      <Image
-        source={`${BASE_URL}/${service.imageUrl}`}
-        className="w-full h-20"
-      />
+      <Image source={getImageUrl(service.imageUrl)} className="w-full h-20" />
 
       <View className="w-full px-2">
         <View className="w-full border-b border-b-GRAY_500 mt-1 mb-2">

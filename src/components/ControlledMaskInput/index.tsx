@@ -19,15 +19,16 @@ export function ControlledMaskInput({
       <Text className="text-base text-GRAY_800 font-bold">{label}</Text>
       <Controller
         {...controllerProps}
-        render={({ field: { value, onChange } }) => (
+        render={({ field: { value, onChange, name } }) => (
           <MaskedTextInput
             {...inputProps}
             mask={mask}
+            testID={name}
             className={`
-              text-base text-GRAY_800 w-full py-1.5 pl-2.5
-              bg-GRAY_100 border ${inputBorderStyle} rounded-lg
-              max-h-20
-            `}
+          text-base text-GRAY_800 w-full py-1.5 pl-2.5
+          bg-GRAY_100 border ${inputBorderStyle} rounded-lg
+          max-h-20
+          `}
             selectionColor={COLORS.GRAY_800}
             value={value}
             onChangeText={onChange}

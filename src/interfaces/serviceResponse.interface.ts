@@ -4,7 +4,7 @@ export interface IServiceResponse {
   description: string;
   image_url: string;
   duration: string;
-  price?: number;
+  price: number;
   business_id: string;
   created_at: string;
   updated_at: string;

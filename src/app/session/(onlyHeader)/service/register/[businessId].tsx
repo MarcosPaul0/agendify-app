@@ -13,6 +13,7 @@ import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
 import { agendifyApiClient } from '@services/agendifyApiClient';
 import { errorHandler } from '@utils/errorHandler';
 import { IErrorResponse } from '@utils/errorHandler/interfaces/errorResponse.interface';
+import { formatPriceToSend } from '@utils/formatPriceToSend';
 import { formatPriceValue } from '@utils/formatPriceValue';
 import { useRouter, useSearchParams } from 'expo-router';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -85,31 +86,28 @@ export default function RegisterService() {
     }
   }
 
-  async function registerBusiness(
+  async function registerService(
     registerBusinessData: TRegisterServiceFormData
   ) {
     try {
       const registerBusinessFormData = new FormData();
-
       const { imageUri } = registerBusinessData;
-
       if (imageUri) {
         const filename = imageUri.split('/').pop() as string;
-
         const match = /\.(\w+)$/.exec(filename);
         const type = match ? `image/${match[1]}` : `image`;
-
         registerBusinessFormData.append('image', {
           uri: imageUri,
           name: filename,
           type,
         } as unknown as Blob);
       }
-
       if (registerBusinessData.price) {
-        registerBusinessFormData.append('price', registerBusinessData.price);
+        registerBusinessFormData.append(
+          'price',
+          formatPriceToSend(registerBusinessData.price)
+        );
       }
-
       registerBusinessFormData.append('name', registerBusinessData.name);
       registerBusinessFormData.append(
         'description',
@@ -120,7 +118,6 @@ export default function RegisterService() {
         registerBusinessData.duration
       );
       registerBusinessFormData.append('business_id', businessId);
-
       await agendifyApiClient.post(
         AGENDIFY_API_ROUTES.SERVICE,
         registerBusinessFormData,
@@ -130,9 +127,7 @@ export default function RegisterService() {
           },
         }
       );
-
-      successNotify('Negócio registrado com sucesso');
-
+      successNotify('Serviço registrado com sucesso');
       router.push(`${APP_ROUTES.MY_BUSINESS_LIST}/${businessId}`);
     } catch (error) {
       errorHandler({ error, catchAxiosError: catchRegisterServiceError });
@@ -207,7 +202,7 @@ export default function RegisterService() {
           <Button
             title="addBusiness"
             text="Adicionar serviço"
-            onPress={handleSubmit(registerBusiness)}
+            onPress={handleSubmit(registerService)}
             isLoading={isSubmitting}
           />
         </ScrollView>

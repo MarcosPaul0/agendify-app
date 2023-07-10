@@ -2,6 +2,7 @@ import { TouchableOpacity, View, Text } from 'react-native';
 import { Image } from 'expo-image';
 import { Rating } from '@components/Rating';
 import { useRouter } from 'expo-router';
+import { getImageUrl } from '@utils/getImageUrl';
 import { IBusinessCardProps } from './interfaces/businessCardProps.interface';
 
 export function BusinessCard({
@@ -10,6 +11,8 @@ export function BusinessCard({
   description,
   favoriteIsActive,
   redirectTo,
+  rating,
+  totalRatings,
 }: IBusinessCardProps) {
   const router = useRouter();
 
@@ -24,14 +27,11 @@ export function BusinessCard({
     <TouchableOpacity
       onPress={redirectToScreen}
       className={`
-      w-full p-4 flex-row mb-4 items-center
+      w-full p-3 flex-row mb-4 items-center
       bg-GRAY_100 border border-GRAY_400 rounded-xl
     `}
     >
-      <Image
-        source={imageUrl}
-        className="w-20 h-20 border-2 rounded-lg border-BLUE_500"
-      />
+      <Image source={getImageUrl(imageUrl)} className="w-20 h-20 rounded-lg" />
 
       {favoriteIsActive && (
         <View className="ml-1 absolute right-2 top-2">
@@ -51,7 +51,12 @@ export function BusinessCard({
           </Text>
         </View>
 
-        <Rating name={title} rating={3} />
+        <Rating
+          name={title}
+          rating={rating}
+          numberOfRatings={totalRatings}
+          showTotalRatings
+        />
 
         <View>
           <Text className="text-xs text-GRAY_600" numberOfLines={2}>
