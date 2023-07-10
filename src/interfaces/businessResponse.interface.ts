@@ -1,3 +1,6 @@
+import { IAddressResponse } from './addressResponse.interface';
+import { IRatingResponse } from './ratingResponse.interface';
+
 export interface IBusinessResponse {
   id: string;
   name: string;
@@ -11,4 +14,6 @@ export interface IBusinessResponse {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  rating: IRatingResponse;
+  address: IAddressResponse;
 }

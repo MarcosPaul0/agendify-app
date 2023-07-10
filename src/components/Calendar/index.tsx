@@ -3,10 +3,17 @@ import { compareDays } from '@utils/compareDays';
 import { CaretLeft, CaretRight } from 'phosphor-react-native';
 import { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { ICalendarProps } from './interfaces/calendarProps.interface';
 
 type TCalendarDays = Date[][];
 
-export function Calendar() {
+export function Calendar({
+  minDate,
+  maxDate,
+  activeDay,
+  validWeekDays = [1, 2, 3, 4, 5, 6],
+  onChangeDay,
+}: ICalendarProps) {
   const [calendarDays, setCalendarDays] = useState<TCalendarDays>([
     [],
     [],
@@ -17,7 +24,6 @@ export function Calendar() {
   ]);
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
-  const [activeDay, setActiveDay] = useState<Date>(new Date());
 
   function handleNextMonth() {
     setMonth((currentMonth) => {
@@ -45,7 +51,79 @@ export function Calendar() {
 
   function handleActiveDay(day: Date) {
     setMonth(day.getMonth());
-    setActiveDay(day);
+    onChangeDay(day);
+  }
+
+  function dayIsEnable(date: Date) {
+    if (!validWeekDays.includes(date.getDay())) {
+      return false;
+    }
+
+    if (!minDate && !maxDate) {
+      return true;
+    }
+
+    date.setHours(0, 0, 0, 0);
+
+    const formattedMinDate = minDate;
+    if (formattedMinDate) {
+      formattedMinDate.setHours(0, 0, 0, 0);
+
+      if (date < minDate) {
+        return false;
+      }
+    }
+
+    const formattedMaxDate = maxDate;
+    if (formattedMaxDate) {
+      formattedMaxDate.setHours(0, 0, 0, 0);
+
+      if (date > maxDate) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function getPreviousMonthButtonIsEnabled() {
+    if (!minDate) {
+      return true;
+    }
+
+    const minDateYear = minDate.getFullYear();
+
+    if (year === minDateYear) {
+      if (month === 0 && year - 1 < minDateYear) {
+        return false;
+      }
+
+      if (month - 1 < minDate.getMonth()) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function getNextMonthButtonIsEnabled() {
+    if (!maxDate) {
+      return true;
+    }
+
+    const maxDateYear = maxDate.getFullYear();
+
+    if (year === maxDateYear) {
+      if (month === 11 && year + 1 > maxDateYear) {
+        return false;
+      }
+
+      if (month + 1 > maxDate.getMonth()) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   useEffect(() => {
@@ -72,14 +150,27 @@ export function Calendar() {
     month: 'long',
   }).format(new Date(year, month));
 
+  const previousMonthButtonIsDisabled = !getPreviousMonthButtonIsEnabled();
+  const nextMonthButtonIsDisabled = !getNextMonthButtonIsEnabled();
+
   return (
     <View className="justify-start w-full py-1 px-2">
       <View className="flex-row justify-between items-center px-2">
         <TouchableOpacity
-          className="p-1 border-BLUE_500 border-2 rounded-md"
+          className={`p-1 border-2 rounded-md ${
+            previousMonthButtonIsDisabled
+              ? 'border-BLUE_200'
+              : 'border-BLUE_500'
+          }`}
           onPress={handlePreviousMonth}
+          disabled={previousMonthButtonIsDisabled}
         >
-          <CaretLeft size={24} color={COLORS.BLUE_500} />
+          <CaretLeft
+            size={24}
+            color={
+              previousMonthButtonIsDisabled ? COLORS.BLUE_200 : COLORS.BLUE_500
+            }
+          />
         </TouchableOpacity>
 
         <Text
@@ -93,10 +184,17 @@ export function Calendar() {
         </Text>
 
         <TouchableOpacity
-          className="p-1 border-BLUE_500 border-2 rounded-md"
+          className={`p-1 border-2 rounded-md ${
+            nextMonthButtonIsDisabled ? 'border-BLUE_200' : 'border-BLUE_500'
+          }`}
           onPress={handleNextMonth}
         >
-          <CaretRight size={24} color={COLORS.BLUE_500} />
+          <CaretRight
+            size={24}
+            color={
+              nextMonthButtonIsDisabled ? COLORS.BLUE_200 : COLORS.BLUE_500
+            }
+          />
         </TouchableOpacity>
       </View>
 
@@ -121,26 +219,26 @@ export function Calendar() {
               {week.map((day, dayIndex) => {
                 const dayKey = `${weekIndex}${dayIndex}-${day.toISOString()}`;
 
+                const dateIsDisabled = !dayIsEnable(day);
+                const isActiveDay = compareDays(day, activeDay);
+                const isDisabledTextColor = dateIsDisabled
+                  ? 'text-GRAY_500'
+                  : 'text-BLUE_900';
+                const isActiveTextColor = isActiveDay
+                  ? 'text-GRAY_50 font-bold'
+                  : isDisabledTextColor;
+
                 return (
                   <TouchableOpacity
                     key={dayKey}
                     className={`
                         items-center justify-center rounded-md
-                        bg-BLUE_100 w-8 h-8 ${
-                          compareDays(day, activeDay) && 'bg-BLUE_500'
-                        }
+                        bg-BLUE_100 w-8 h-8 ${isActiveDay && 'bg-BLUE_500'}
                       `}
                     onPress={() => handleActiveDay(day)}
+                    disabled={dateIsDisabled}
                   >
-                    <Text
-                      className={
-                        compareDays(day, activeDay)
-                          ? 'text-GRAY_50 font-bold'
-                          : 'text-BLUE_900'
-                      }
-                    >
-                      {day.getDate()}
-                    </Text>
+                    <Text className={isActiveTextColor}>{day.getDate()}</Text>
                   </TouchableOpacity>
                 );
               })}

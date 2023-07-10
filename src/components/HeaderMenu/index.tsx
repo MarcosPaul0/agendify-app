@@ -72,7 +72,7 @@ export function HeaderMenu({ businessId }: IHeaderMenuProps) {
           )}
           <Link
             className="flex-row items-center"
-            href={APP_ROUTES.MY_AVAILABILITY}
+            href={`${APP_ROUTES.MY_AVAILABILITY}/${businessId}`}
           >
             <View className="flex-row items-center gap-2">
               <Clock size={24} color={COLORS.BLUE_900} />

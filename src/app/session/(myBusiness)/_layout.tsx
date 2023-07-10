@@ -60,24 +60,13 @@ export default function TabsLayout() {
 
       <Tabs.Screen
         options={{
-          headerTitle: 'Dados do meu negócio',
+          headerTitle: 'Minha Disponibilidade',
           headerStyle: {
             backgroundColor: COLORS.BLUE_100,
           },
           tabBarButton: () => null,
         }}
-        name="manageBusiness"
-      />
-
-      <Tabs.Screen
-        options={{
-          headerTitle: 'Disponibilidade',
-          headerStyle: {
-            backgroundColor: COLORS.BLUE_100,
-          },
-          tabBarButton: () => null,
-        }}
-        name="myAvailability"
+        name="myAvailability/[businessId]"
       />
     </Tabs>
   );

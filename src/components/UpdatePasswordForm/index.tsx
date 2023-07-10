@@ -1,7 +1,14 @@
 import { Button } from '@components/Button';
 import { ControlledInput } from '@components/Input';
 import { SectionTitle } from '@components/SectionTitle';
+import { HTTP_STATUS } from '@constants/httpStatus.constant';
+import { useAuthContext } from '@contexts/AuthContext';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNotify } from '@hooks/useNotify';
+import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
+import { agendifyApiClient } from '@services/agendifyApiClient';
+import { errorHandler } from '@utils/errorHandler';
+import { IErrorResponse } from '@utils/errorHandler/interfaces/errorResponse.interface';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -13,6 +20,10 @@ const updatePasswordValidationSchema = z.object({
 type TUpdatePasswordFormData = z.infer<typeof updatePasswordValidationSchema>;
 
 export function UpdatePasswordForm() {
+  const { user } = useAuthContext();
+
+  const { successNotify, errorNotify } = useNotify();
+
   const formMethods = useForm<TUpdatePasswordFormData>({
     resolver: zodResolver(updatePasswordValidationSchema),
   });
@@ -23,8 +34,28 @@ export function UpdatePasswordForm() {
     formState: { errors },
   } = formMethods;
 
-  async function updatePassword() {
-    // TODO adicionar integração com a API
+  function catchUpdateUserError(error: IErrorResponse) {
+    switch (error.statusCode) {
+      case HTTP_STATUS.INTERNAL_SERVER_ERROR:
+        errorNotify('Erro interno do servidor');
+        break;
+      default:
+        errorNotify('Ocorreu algum erro ao atualizar a senha');
+        break;
+    }
+  }
+
+  async function updatePassword(updatePasswordData: TUpdatePasswordFormData) {
+    try {
+      await agendifyApiClient.patch(
+        `${AGENDIFY_API_ROUTES.USER}/${user?.id}`,
+        updatePasswordData
+      );
+
+      successNotify('Sua senha foi atualizada');
+    } catch (error) {
+      errorHandler({ error, catchAxiosError: catchUpdateUserError });
+    }
   }
 
   return (

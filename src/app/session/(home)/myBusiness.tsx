@@ -6,7 +6,6 @@ import { useQuery } from 'react-query';
 import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
 import { agendifyApiClient } from '@services/agendifyApiClient';
 import { IBusinessResponse } from 'src/interfaces/businessResponse.interface';
-import { BASE_URL } from '@constants/baseUrl.constant';
 import { useFocusEffect } from 'expo-router';
 import { Spinner } from '@components/Spinner';
 import { useCallback } from 'react';
@@ -56,9 +55,11 @@ export default function MyBusiness() {
           <BusinessCard
             key={item.id}
             redirectTo={`${APP_ROUTES.VIEW_MY_BUSINESS}/${item.id}`}
-            imageUrl={`${BASE_URL}/${item.image_url}`}
+            imageUrl={item.image_url}
             description={item.description}
             title={item.name}
+            rating={item.rating.averageRating}
+            totalRatings={item.rating.totalRatings}
           />
         )}
         className="flex-1 w-full px-5 pb-5 mt-5"

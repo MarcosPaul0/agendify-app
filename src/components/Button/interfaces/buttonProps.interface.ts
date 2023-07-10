@@ -8,4 +8,5 @@ export interface IButtonProps extends ButtonProps {
   variant?: TButtonVariants;
   icon?: ReactNode;
   isDanger?: boolean;
+  width?: string;
 }

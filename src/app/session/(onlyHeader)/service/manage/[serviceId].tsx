@@ -15,6 +15,7 @@ import { AGENDIFY_API_ROUTES } from '@routes/agendifyApiRoutes.constant';
 import { agendifyApiClient } from '@services/agendifyApiClient';
 import { errorHandler } from '@utils/errorHandler';
 import { IErrorResponse } from '@utils/errorHandler/interfaces/errorResponse.interface';
+import { formatPriceToSend } from '@utils/formatPriceToSend';
 import { formatPriceValue } from '@utils/formatPriceValue';
 import { useRouter, useSearchParams, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
@@ -34,8 +35,9 @@ const updateServiceValidationSchema = z.object({
     required_error: 'Campo obrigatório',
   }),
   price: z
-    .string()
-    .optional()
+    .string({
+      required_error: 'Campo obrigatório',
+    })
     .transform((price) => {
       if (price) {
         return String(price.replace(/\./g, '').replace(',', '.'));
@@ -47,7 +49,7 @@ const updateServiceValidationSchema = z.object({
 
 type TUpdateServiceFormData = z.infer<typeof updateServiceValidationSchema>;
 
-export default function RegisterService() {
+export default function ManageService() {
   const { errorNotify, successNotify } = useNotify();
 
   const params = useSearchParams();
@@ -117,15 +119,16 @@ export default function RegisterService() {
     }
   }
 
-  async function registerBusiness({
+  async function updateService({
     description,
     duration,
     name,
+    price,
   }: TUpdateServiceFormData) {
     try {
       const response = await agendifyApiClient.patch<IServiceResponse>(
         `${AGENDIFY_API_ROUTES.SERVICE}/${serviceId}`,
-        { description, duration, name }
+        { description, duration, name, price: Number(formatPriceToSend(price)) }
       );
 
       const businessId = response.data.business_id;
@@ -158,7 +161,7 @@ export default function RegisterService() {
       const businessId = response.data.business_id;
 
       successNotify('Serviço deletado com sucesso');
-      router.push(`${APP_ROUTES.MANAGE_MY_BUSINESS}/${businessId}`);
+      router.push(`${APP_ROUTES.MY_BUSINESS_LIST}/${businessId}`);
     } catch (error) {
       errorHandler({ error, catchAxiosError: catchDeleteServiceError });
     }
@@ -180,7 +183,11 @@ export default function RegisterService() {
           setImageUrl(`${BASE_URL}/${service.image_url}`);
 
           if (service.price) {
-            setValue('price', formatPriceValue(service.price));
+            const formattedPrice = formatPriceValue(service.price);
+            setValue(
+              'price',
+              service.price % 1 === 0 ? `${formattedPrice}00` : formattedPrice
+            );
           }
         } catch {
           router.push(APP_ROUTES.MY_BUSINESS_LIST);
@@ -256,7 +263,7 @@ export default function RegisterService() {
           <Button
             title="addBusiness"
             text="Atualizar serviço"
-            onPress={handleSubmit(registerBusiness)}
+            onPress={handleSubmit(updateService)}
             isLoading={isSubmitting}
           />
 
@@ -264,7 +271,7 @@ export default function RegisterService() {
             onConfirm={deleteService}
             onCancel={() => null}
             buttonText="Deletar serviço"
-            text="Deltar um serviço é uma ação definitiva, após a confimação todos os dados do serviço serão perdidos"
+            text="Deletar um serviço é uma ação definitiva, após a confirmação todos os dados do serviço serão perdidos"
             title="Deletar serviço?"
           />
         </ScrollView>

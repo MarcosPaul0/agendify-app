@@ -1,6 +1,11 @@
 export const AGENDIFY_API_ROUTES = {
   USER: '/users',
   BUSINESS: '/business',
+  ADDRESS: '/address',
+  AVAILABILITY: '/availability',
+  AVAILABILITY_BY_BUSINESS: '/availability/business',
+  RATING: '/rating',
+  MY_RATINGS: '/rating/my-ratings',
   SERVICE: '/services',
   MY_BUSINESS: '/business/my-business',
   LOGIN: '/login',
