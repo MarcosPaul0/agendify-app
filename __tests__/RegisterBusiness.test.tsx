@@ -1,7 +1,11 @@
 import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import { ToastOptions } from 'react-native-toast-notifications/lib/typescript/toast';
 import RegisterBusiness from '@app/session/(home)/registerBusiness';
-import { defaultToastParams } from '../mocks/defaultToastParams.mock';
+import {
+  fakeDescriptionMaxLength,
+  fakeNameMaxLength,
+} from '../mocks/fields.mock';
+import { successToastParams } from '../mocks/defaultToastParams.mock';
 
 jest.mock('expo-router', () => {
   const currentRouter = jest.requireActual('expo-router');
@@ -34,7 +38,7 @@ jest.mock('react-native-toast-notifications', () => ({
   }),
 }));
 
-describe('Business Register', () => {
+describe('Register Business', () => {
   it('All fields are correct', async () => {
     const { getByTestId } = render(<RegisterBusiness />);
 
@@ -67,7 +71,7 @@ describe('Business Register', () => {
       fireEvent.changeText(postalCodeInput, '00000-000');
       fireEvent.changeText(districtInput, 'fake district');
       fireEvent.changeText(cityInput, 'fake city');
-      fireEvent.changeText(stateInput, 'fake state');
+      fireEvent.changeText(stateInput, 'FS');
       fireEvent.changeText(streetInput, 'fake street');
       fireEvent.changeText(numberInput, '999');
       fireEvent(registerButton, 'press');
@@ -77,7 +81,7 @@ describe('Business Register', () => {
       expect(mockSuccessNotify).toBeCalled();
       expect(mockSuccessNotify).toHaveBeenCalledWith(
         'Negócio registrado com sucesso',
-        defaultToastParams
+        successToastParams
       );
     });
   });
@@ -115,6 +119,55 @@ describe('Business Register', () => {
       const requiredText = getAllByText('Campo obrigatório');
 
       expect(requiredText).toHaveLength(7);
+    });
+  });
+
+  it('All fields are incorrect', async () => {
+    const { getByTestId, findByText } = render(<RegisterBusiness />);
+
+    const nameInput = getByTestId('name');
+    const telephoneInput = getByTestId('telephone');
+    const descriptionInput = getByTestId('description');
+    const postalCodeInput = getByTestId('postalCode');
+    const districtInput = getByTestId('district');
+    const cityInput = getByTestId('city');
+    const stateInput = getByTestId('state');
+    const streetInput = getByTestId('street');
+    const numberInput = getByTestId('number');
+
+    expect(nameInput).toBeDefined();
+    expect(telephoneInput).toBeDefined();
+    expect(descriptionInput).toBeDefined();
+    expect(postalCodeInput).toBeDefined();
+    expect(districtInput).toBeDefined();
+    expect(cityInput).toBeDefined();
+    expect(stateInput).toBeDefined();
+    expect(streetInput).toBeDefined();
+    expect(numberInput).toBeDefined();
+
+    const registerButton = getByTestId('Adicionar negócio');
+
+    await act(async () => {
+      fireEvent.changeText(nameInput, fakeNameMaxLength);
+      fireEvent.changeText(telephoneInput, '(35) 999999999');
+      fireEvent.changeText(descriptionInput, fakeDescriptionMaxLength);
+      fireEvent.changeText(postalCodeInput, '00000-000');
+      fireEvent.changeText(districtInput, 'fake district');
+      fireEvent.changeText(cityInput, 'fake city');
+      fireEvent.changeText(stateInput, 'fake state');
+      fireEvent.changeText(streetInput, 'fake street');
+      fireEvent.changeText(numberInput, '999');
+      fireEvent(registerButton, 'press');
+    });
+
+    await waitFor(() => {
+      const nameErrorText = findByText('Número máximo de caracteres é 50');
+      const descriptionErrorText = findByText(
+        'Número máximo de caracteres é 255'
+      );
+
+      expect(nameErrorText).toBeDefined();
+      expect(descriptionErrorText).toBeDefined();
     });
   });
 });

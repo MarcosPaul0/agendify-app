@@ -64,21 +64,25 @@ export function HeaderMenu({ businessId }: IHeaderMenuProps) {
               className="flex-row items-center"
               href={`${APP_ROUTES.MANAGE_MY_BUSINESS}/${businessId}`}
             >
-              <View className="flex-row items-center gap-2">
+              <View className="flex-row items-center gap-2 ml-2">
                 <Briefcase size={24} color={COLORS.BLUE_900} />
                 <Text>Dados do negócio</Text>
               </View>
             </Link>
           )}
-          <Link
-            className="flex-row items-center"
-            href={`${APP_ROUTES.MY_AVAILABILITY}/${businessId}`}
-          >
-            <View className="flex-row items-center gap-2">
-              <Clock size={24} color={COLORS.BLUE_900} />
-              <Text>Disponibilidade</Text>
-            </View>
-          </Link>
+
+          {businessId && (
+            <Link
+              className="flex-row items-center"
+              href={`${APP_ROUTES.MY_AVAILABILITY}/${businessId}`}
+            >
+              <View className="flex-row items-center gap-2 ml-2">
+                <Clock size={24} color={COLORS.BLUE_900} />
+                <Text>Disponibilidade</Text>
+              </View>
+            </Link>
+          )}
+
           {isAuthenticated && (
             <TouchableOpacity
               className="flex-row items-center gap-2"

@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Delete Alert Match with snapshot 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#EF4444",
+      "borderBottomColor": "#EF4444",
+      "borderBottomLeftRadius": 12,
+      "borderBottomRightRadius": 12,
+      "borderLeftColor": "#EF4444",
+      "borderRightColor": "#EF4444",
+      "borderTopColor": "#EF4444",
+      "borderTopLeftRadius": 12,
+      "borderTopRightRadius": 12,
+      "flexDirection": "row",
+      "height": 44,
+      "justifyContent": "center",
+      "marginBottom": 12,
+      "marginTop": 12,
+      "opacity": 1,
+      "width": "100%",
+    }
+  }
+  testID="fake-text"
+>
+  <View
+    style={
+      [
+        {
+          "marginRight": 8,
+        },
+      ]
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="24"
+      bbWidth="24"
+      color="#F8F9FA"
+      focusable={false}
+      height={24}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      size={24}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          [
+            undefined,
+            undefined,
+            {},
+          ],
+          {
+            "flex": 0,
+            "height": 24,
+            "width": 24,
+          },
+        ]
+      }
+      tintColor="#F8F9FA"
+      vbHeight={256}
+      vbWidth={256}
+      width={24}
+    >
+      <RNSVGGroup>
+        <RNSVGRect
+          fill={null}
+          height="256"
+          propList={
+            [
+              "fill",
+            ]
+          }
+          width="256"
+          x="0"
+          y="0"
+        />
+        <RNSVGLine
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294507002,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth="16"
+          x1="216"
+          x2="40"
+          y1="56"
+          y2="56"
+        />
+        <RNSVGLine
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294507002,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth="16"
+          x1="104"
+          x2="104"
+          y1="104"
+          y2="168"
+        />
+        <RNSVGLine
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294507002,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth="16"
+          x1="152"
+          x2="152"
+          y1="104"
+          y2="168"
+        />
+        <RNSVGPath
+          d="M200,56V208a8,8,0,0,1-8,8H64a8,8,0,0,1-8-8V56"
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294507002,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth="16"
+        />
+        <RNSVGPath
+          d="M168,56V40a16,16,0,0,0-16-16H104A16,16,0,0,0,88,40V56"
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294507002,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth="16"
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+  <Text
+    style={
+      [
+        {
+          "fontWeight": "700",
+        },
+        {
+          "textAlign": "center",
+        },
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        },
+        {
+          "color": "#F8F9FA",
+        },
+      ]
+    }
+  >
+    fake-text
+  </Text>
+</View>
+`;

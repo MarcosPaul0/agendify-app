@@ -1,0 +1,553 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Business Card Match with snapshot 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#F5F5F5",
+      "borderBottomColor": "#CED4DA",
+      "borderBottomLeftRadius": 12,
+      "borderBottomRightRadius": 12,
+      "borderBottomWidth": 1,
+      "borderLeftColor": "#CED4DA",
+      "borderLeftWidth": 1,
+      "borderRightColor": "#CED4DA",
+      "borderRightWidth": 1,
+      "borderTopColor": "#CED4DA",
+      "borderTopLeftRadius": 12,
+      "borderTopRightRadius": 12,
+      "borderTopWidth": 1,
+      "flexDirection": "row",
+      "marginBottom": 16,
+      "opacity": 1,
+      "paddingBottom": 12,
+      "paddingLeft": 12,
+      "paddingRight": 12,
+      "paddingTop": 12,
+      "width": "100%",
+    }
+  }
+>
+  <ViewManagerAdapter_ExpoImage
+    borderBottomLeftRadius={8}
+    borderBottomRightRadius={8}
+    borderTopLeftRadius={8}
+    borderTopRightRadius={8}
+    height={80}
+    onError={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onProgress={[Function]}
+    proxiedProperties={
+      {
+        "contentFit": "cover",
+        "contentPosition": {
+          "left": "50%",
+          "top": "50%",
+        },
+        "placeholder": [],
+        "source": [
+          {
+            "uri": "http://10.0.2.2:3333/fake-image-url",
+          },
+        ],
+        "tintColor": undefined,
+        "transition": null,
+      }
+    }
+    style={
+      {
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "height": 80,
+        "width": 80,
+      }
+    }
+    width={80}
+  />
+  <View
+    style={
+      [
+        {
+          "marginLeft": 4,
+        },
+        {
+          "position": "absolute",
+        },
+        {
+          "right": 8,
+        },
+        {
+          "top": 8,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      [
+        {
+          "paddingLeft": 16,
+        },
+        {
+          "flexBasis": "0%",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+        {
+          "alignItems": "flex-start",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "borderBottomWidth": 1,
+          },
+          {
+            "borderBottomColor": "#CED4DA",
+            "borderLeftColor": "#CED4DA",
+            "borderRightColor": "#CED4DA",
+            "borderTopColor": "#CED4DA",
+          },
+          {
+            "paddingBottom": 4,
+          },
+          {
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          [
+            {
+              "marginRight": 16,
+            },
+            {
+              "fontWeight": "700",
+            },
+            {
+              "color": "#18273C",
+            },
+          ]
+        }
+      >
+        fake-title
+      </Text>
+    </View>
+    <View
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          {
+            "alignItems": "center",
+          },
+          {
+            "paddingBottom": 4,
+            "paddingTop": 4,
+          },
+        ]
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="16"
+        bbWidth="16"
+        color="#FFD015"
+        fill="#FFD015"
+        focusable={false}
+        height={16}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        size={16}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            [
+              undefined,
+              undefined,
+              {},
+            ],
+            {
+              "flex": 0,
+              "height": 16,
+              "width": 16,
+            },
+          ]
+        }
+        tintColor="#FFD015"
+        vbHeight={256}
+        vbWidth={256}
+        width={16}
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4294955029,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGRect
+            fill={null}
+            height="256"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            width="256"
+            x="0"
+            y="0"
+          />
+          <RNSVGPath
+            d="M239.2,97.4A16.4,16.4,0,0,0,224.6,86l-59.4-4.1-22-55.5A16.4,16.4,0,0,0,128,16h0a16.4,16.4,0,0,0-15.2,10.4L90.4,82.2,31.4,86A16.5,16.5,0,0,0,16.8,97.4,16.8,16.8,0,0,0,22,115.5l45.4,38.4L53.9,207a18.5,18.5,0,0,0,7,19.6,18,18,0,0,0,20.1.6l46.9-29.7h.2l50.5,31.9a16.1,16.1,0,0,0,8.7,2.6,16.5,16.5,0,0,0,15.8-20.8l-14.3-58.1L234,115.5A16.8,16.8,0,0,0,239.2,97.4Z"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="16"
+        bbWidth="16"
+        color="#FFD015"
+        fill="#FFD015"
+        focusable={false}
+        height={16}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        size={16}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            [
+              undefined,
+              undefined,
+              {},
+            ],
+            {
+              "flex": 0,
+              "height": 16,
+              "width": 16,
+            },
+          ]
+        }
+        tintColor="#FFD015"
+        vbHeight={256}
+        vbWidth={256}
+        width={16}
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4294955029,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGRect
+            fill={null}
+            height="256"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            width="256"
+            x="0"
+            y="0"
+          />
+          <RNSVGPath
+            d="M239.2,97.4A16.4,16.4,0,0,0,224.6,86l-59.4-4.1-22-55.5A16.4,16.4,0,0,0,128,16h0a16.4,16.4,0,0,0-15.2,10.4L90.4,82.2,31.4,86A16.5,16.5,0,0,0,16.8,97.4,16.8,16.8,0,0,0,22,115.5l45.4,38.4L53.9,207a18.5,18.5,0,0,0,7,19.6,18,18,0,0,0,20.1.6l46.9-29.7h.2l50.5,31.9a16.1,16.1,0,0,0,8.7,2.6,16.5,16.5,0,0,0,15.8-20.8l-14.3-58.1L234,115.5A16.8,16.8,0,0,0,239.2,97.4Z"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="16"
+        bbWidth="16"
+        color="#FFD015"
+        fill="#FFD015"
+        focusable={false}
+        height={16}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        size={16}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            [
+              undefined,
+              undefined,
+              {},
+            ],
+            {
+              "flex": 0,
+              "height": 16,
+              "width": 16,
+            },
+          ]
+        }
+        tintColor="#FFD015"
+        vbHeight={256}
+        vbWidth={256}
+        width={16}
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4294955029,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGRect
+            fill={null}
+            height="256"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            width="256"
+            x="0"
+            y="0"
+          />
+          <RNSVGPath
+            d="M239.2,97.4A16.4,16.4,0,0,0,224.6,86l-59.4-4.1-22-55.5A16.4,16.4,0,0,0,128,16h0a16.4,16.4,0,0,0-15.2,10.4L90.4,82.2,31.4,86A16.5,16.5,0,0,0,16.8,97.4,16.8,16.8,0,0,0,22,115.5l45.4,38.4L53.9,207a18.5,18.5,0,0,0,7,19.6,18,18,0,0,0,20.1.6l46.9-29.7h.2l50.5,31.9a16.1,16.1,0,0,0,8.7,2.6,16.5,16.5,0,0,0,15.8-20.8l-14.3-58.1L234,115.5A16.8,16.8,0,0,0,239.2,97.4Z"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="16"
+        bbWidth="16"
+        color="#FFD015"
+        fill="#FFD015"
+        focusable={false}
+        height={16}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        size={16}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            [
+              undefined,
+              undefined,
+              {},
+            ],
+            {
+              "flex": 0,
+              "height": 16,
+              "width": 16,
+            },
+          ]
+        }
+        tintColor="#FFD015"
+        vbHeight={256}
+        vbWidth={256}
+        width={16}
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4294955029,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGRect
+            fill={null}
+            height="256"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            width="256"
+            x="0"
+            y="0"
+          />
+          <RNSVGPath
+            d="M239.2,97.4A16.4,16.4,0,0,0,224.6,86l-59.4-4.1-22-55.5A16.4,16.4,0,0,0,128,16h0a16.4,16.4,0,0,0-15.2,10.4L90.4,82.2,31.4,86A16.5,16.5,0,0,0,16.8,97.4,16.8,16.8,0,0,0,22,115.5l45.4,38.4L53.9,207a18.5,18.5,0,0,0,7,19.6,18,18,0,0,0,20.1.6l46.9-29.7h.2l50.5,31.9a16.1,16.1,0,0,0,8.7,2.6,16.5,16.5,0,0,0,15.8-20.8l-14.3-58.1L234,115.5A16.8,16.8,0,0,0,239.2,97.4Z"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="16"
+        bbWidth="16"
+        color="#FFD015"
+        fill="#FFD015"
+        focusable={false}
+        height={16}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        size={16}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            [
+              undefined,
+              undefined,
+              {},
+            ],
+            {
+              "flex": 0,
+              "height": 16,
+              "width": 16,
+            },
+          ]
+        }
+        tintColor="#FFD015"
+        vbHeight={256}
+        vbWidth={256}
+        width={16}
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4294955029,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGRect
+            fill={null}
+            height="256"
+            propList={
+              [
+                "fill",
+              ]
+            }
+            width="256"
+            x="0"
+            y="0"
+          />
+          <RNSVGPath
+            d="M239.2,97.4A16.4,16.4,0,0,0,224.6,86l-59.4-4.1-22-55.5A16.4,16.4,0,0,0,128,16h0a16.4,16.4,0,0,0-15.2,10.4L90.4,82.2,31.4,86A16.5,16.5,0,0,0,16.8,97.4,16.8,16.8,0,0,0,22,115.5l45.4,38.4L53.9,207a18.5,18.5,0,0,0,7,19.6,18,18,0,0,0,20.1.6l46.9-29.7h.2l50.5,31.9a16.1,16.1,0,0,0,8.7,2.6,16.5,16.5,0,0,0,15.8-20.8l-14.3-58.1L234,115.5A16.8,16.8,0,0,0,239.2,97.4Z"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <Text
+        style={
+          [
+            {
+              "marginLeft": 8,
+            },
+            {
+              "color": "#18273C",
+            },
+            {
+              "fontSize": 12,
+              "lineHeight": 16,
+            },
+          ]
+        }
+      >
+        5
+      </Text>
+    </View>
+    <View>
+      <Text
+        numberOfLines={2}
+        style={
+          [
+            {
+              "fontSize": 12,
+              "lineHeight": 16,
+            },
+            {
+              "color": "#6C757D",
+            },
+          ]
+        }
+      >
+        fake-description
+      </Text>
+    </View>
+  </View>
+</View>
+`;

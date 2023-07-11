@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link Button Match with snapshot 1`] = `
+<Text
+  accessibilityRole="link"
+  href="fake-route"
+  onPress={[Function]}
+  style={
+    {
+      "backgroundColor": "#3763A4",
+      "borderBottomColor": "#3763A4",
+      "borderBottomLeftRadius": 12,
+      "borderBottomRightRadius": 12,
+      "borderBottomWidth": 2,
+      "borderLeftColor": "#3763A4",
+      "borderLeftWidth": 2,
+      "borderRightColor": "#3763A4",
+      "borderRightWidth": 2,
+      "borderTopColor": "#3763A4",
+      "borderTopLeftRadius": 12,
+      "borderTopRightRadius": 12,
+      "borderTopWidth": 2,
+      "color": "#F8F9FA",
+      "fontSize": 16,
+      "fontWeight": "700",
+      "height": 48,
+      "justifyContent": "center",
+      "lineHeight": 24,
+      "marginTop": 12,
+      "paddingTop": 10,
+      "textAlign": "center",
+      "width": "100%",
+    }
+  }
+>
+  fake=text
+</Text>
+`;

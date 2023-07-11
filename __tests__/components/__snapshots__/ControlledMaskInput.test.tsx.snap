@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Controlled Mask Input Match with snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "width": "100%",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "fontSize": 16,
+          "lineHeight": 24,
+        },
+        {
+          "color": "#343A40",
+        },
+        {
+          "fontWeight": "700",
+        },
+      ]
+    }
+  />
+  <TextInput
+    maxLength={2}
+    onChangeText={[Function]}
+    selectionColor="#343A40"
+    style={
+      [
+        {
+          "fontStyle": undefined,
+          "fontWeight": undefined,
+          "textDecorationLine": undefined,
+        },
+        [
+          {
+            "fontSize": 16,
+            "lineHeight": 24,
+          },
+          {
+            "color": "#343A40",
+          },
+          {
+            "width": "100%",
+          },
+          {
+            "paddingBottom": 6,
+            "paddingTop": 6,
+          },
+          {
+            "paddingLeft": 10,
+          },
+          {
+            "backgroundColor": "#F5F5F5",
+          },
+          {
+            "borderBottomWidth": 1,
+            "borderLeftWidth": 1,
+            "borderRightWidth": 1,
+            "borderTopWidth": 1,
+          },
+          {
+            "borderBottomColor": "#ADB5BD",
+            "borderLeftColor": "#ADB5BD",
+            "borderRightColor": "#ADB5BD",
+            "borderTopColor": "#ADB5BD",
+          },
+          {
+            "borderBottomLeftRadius": 8,
+            "borderBottomRightRadius": 8,
+            "borderTopLeftRadius": 8,
+            "borderTopRightRadius": 8,
+          },
+          {
+            "maxHeight": 80,
+          },
+        ],
+      ]
+    }
+    testID="fake-name"
+    value=""
+  />
+  <Text
+    style={
+      [
+        {
+          "color": "#EF4444",
+        },
+        {
+          "paddingLeft": 4,
+        },
+        {
+          "height": 24,
+        },
+      ]
+    }
+  />
+</View>
+`;

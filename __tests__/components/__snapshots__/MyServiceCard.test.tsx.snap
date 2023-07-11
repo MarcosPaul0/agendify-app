@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Service Card Match with snapshot 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#F5F5F5",
+      "borderBottomColor": "#ADB5BD",
+      "borderBottomLeftRadius": 8,
+      "borderBottomRightRadius": 8,
+      "borderBottomWidth": 1,
+      "borderLeftColor": "#ADB5BD",
+      "borderLeftWidth": 1,
+      "borderRightColor": "#ADB5BD",
+      "borderRightWidth": 1,
+      "borderTopColor": "#ADB5BD",
+      "borderTopLeftRadius": 8,
+      "borderTopRightRadius": 8,
+      "borderTopWidth": 1,
+      "height": 160,
+      "marginLeft": 8,
+      "marginRight": 20,
+      "opacity": 1,
+      "overflow": "hidden",
+      "width": 160,
+    }
+  }
+>
+  <ViewManagerAdapter_ExpoImage
+    height={80}
+    onError={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onProgress={[Function]}
+    proxiedProperties={
+      {
+        "contentFit": "cover",
+        "contentPosition": {
+          "left": "50%",
+          "top": "50%",
+        },
+        "placeholder": [],
+        "source": [
+          {
+            "uri": "http://10.0.2.2:3333/fake-service-image-url",
+          },
+        ],
+        "tintColor": undefined,
+        "transition": null,
+      }
+    }
+    style={
+      {
+        "height": 80,
+        "width": "100%",
+      }
+    }
+    width="100%"
+  />
+  <View
+    style={
+      [
+        {
+          "width": "100%",
+        },
+        {
+          "paddingLeft": 8,
+          "paddingRight": 8,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "width": "100%",
+          },
+          {
+            "borderBottomWidth": 1,
+          },
+          {
+            "borderBottomColor": "#ADB5BD",
+          },
+          {
+            "marginTop": 4,
+          },
+          {
+            "marginBottom": 8,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontWeight": "700",
+            },
+            {
+              "color": "#0D141F",
+            },
+            {
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        fake-service-name
+      </Text>
+    </View>
+    <View
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          {
+            "alignItems": "center",
+          },
+        ]
+      }
+    >
+      <Text
+        numberOfLines={2}
+        style={
+          [
+            {
+              "fontSize": 12,
+              "lineHeight": 16,
+            },
+            {
+              "color": "#6C757D",
+            },
+          ]
+        }
+      >
+        fake-service-description
+      </Text>
+    </View>
+  </View>
+</View>
+`;

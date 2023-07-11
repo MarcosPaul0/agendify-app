@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container Match with snapshot 1`] = `
+<RCTSafeAreaView
+  style={
+    [
+      {
+        "flexBasis": "0%",
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+      {
+        "alignItems": "center",
+      },
+      {
+        "backgroundColor": "#F8F9FA",
+      },
+    ]
+  }
+>
+  <Text>
+    Fake Children
+  </Text>
+</RCTSafeAreaView>
+`;

@@ -1,7 +1,7 @@
 import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import { ToastOptions } from 'react-native-toast-notifications/lib/typescript/toast';
 import RegisterService from '@app/session/(onlyHeader)/service/register/[businessId]';
-import { defaultToastParams } from '../mocks/defaultToastParams.mock';
+import { successToastParams } from '../mocks/defaultToastParams.mock';
 
 jest.mock('expo-router', () => {
   const currentRouter = jest.requireActual('expo-router');
@@ -38,7 +38,7 @@ jest.mock('react-native-toast-notifications', () => ({
   }),
 }));
 
-describe('Service Register', () => {
+describe('Register Service', () => {
   it('All fields are correct', async () => {
     const { getByTestId } = render(<RegisterService />);
 
@@ -66,7 +66,7 @@ describe('Service Register', () => {
       expect(mockSuccessNotify).toBeCalled();
       expect(mockSuccessNotify).toHaveBeenCalledWith(
         'Serviço registrado com sucesso',
-        defaultToastParams
+        successToastParams
       );
     });
   });
