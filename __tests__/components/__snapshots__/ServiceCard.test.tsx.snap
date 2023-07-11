@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Service Card Match with snapshot 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={false}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#F5F5F5",
+      "borderBottomColor": "#ADB5BD",
+      "borderBottomLeftRadius": 12,
+      "borderBottomRightRadius": 12,
+      "borderBottomWidth": 1,
+      "borderLeftColor": "#ADB5BD",
+      "borderLeftWidth": 1,
+      "borderRightColor": "#ADB5BD",
+      "borderRightWidth": 1,
+      "borderTopColor": "#ADB5BD",
+      "borderTopLeftRadius": 12,
+      "borderTopRightRadius": 12,
+      "borderTopWidth": 1,
+      "flexBasis": "0%",
+      "flexDirection": "row",
+      "flexGrow": 1,
+      "flexShrink": 1,
+      "marginBottom": 16,
+      "marginLeft": 20,
+      "opacity": 1,
+    }
+  }
+>
+  <View
+    style={
+      [
+        {
+          "flexDirection": "row",
+        },
+        {
+          "alignItems": "center",
+        },
+        {
+          "justifyContent": "center",
+        },
+        {
+          "width": 24,
+        },
+        {
+          "height": 24,
+        },
+        {
+          "fontSize": 14,
+          "lineHeight": 20,
+        },
+        {
+          "borderBottomLeftRadius": 9999,
+          "borderBottomRightRadius": 9999,
+          "borderTopLeftRadius": 9999,
+          "borderTopRightRadius": 9999,
+        },
+        {
+          "backgroundColor": "#3763A4",
+        },
+        {
+          "position": "absolute",
+        },
+        {
+          "zIndex": 10,
+        },
+        {
+          "top": -10,
+        },
+        {
+          "right": 24,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontWeight": "700",
+          },
+          {
+            "color": "#F8F9FA",
+          },
+        ]
+      }
+    >
+      2
+    </Text>
+  </View>
+  <ViewManagerAdapter_ExpoImage
+    borderBottomLeftRadius={8}
+    borderBottomRightRadius={8}
+    borderTopLeftRadius={8}
+    borderTopRightRadius={8}
+    height={80}
+    marginBottom={8}
+    marginLeft={8}
+    marginRight={8}
+    marginTop={8}
+    onError={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onProgress={[Function]}
+    proxiedProperties={
+      {
+        "contentFit": "cover",
+        "contentPosition": {
+          "left": "50%",
+          "top": "50%",
+        },
+        "placeholder": [],
+        "source": [
+          {
+            "uri": "http://10.0.2.2:3333/fake-service-image-url",
+          },
+        ],
+        "tintColor": undefined,
+        "transition": null,
+      }
+    }
+    style={
+      {
+        "borderBottomLeftRadius": 8,
+        "borderBottomRightRadius": 8,
+        "borderTopLeftRadius": 8,
+        "borderTopRightRadius": 8,
+        "height": 80,
+        "marginBottom": 8,
+        "marginLeft": 8,
+        "marginRight": 8,
+        "marginTop": 8,
+        "width": 80,
+      }
+    }
+    width={80}
+  />
+  <View
+    style={
+      [
+        {
+          "flexBasis": "0%",
+          "flexGrow": 1,
+          "flexShrink": 1,
+        },
+        {
+          "paddingRight": 8,
+        },
+        {
+          "paddingBottom": 4,
+          "paddingTop": 4,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        [
+          {
+            "width": "100%",
+          },
+          {
+            "marginBottom": 8,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontWeight": "700",
+            },
+            {
+              "color": "#2C4F81",
+            },
+            {
+              "fontSize": 16,
+              "lineHeight": 24,
+            },
+            {
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        fake-service-name
+      </Text>
+    </View>
+    <View
+      style={
+        [
+          {
+            "width": "100%",
+          },
+          {
+            "marginBottom": 8,
+          },
+          {
+            "paddingLeft": 12,
+            "paddingRight": 12,
+          },
+        ]
+      }
+    >
+      <Text
+        numberOfLines={5}
+        style={
+          [
+            {
+              "color": "#6C757D",
+            },
+            {
+              "fontSize": 12,
+              "lineHeight": 16,
+            },
+          ]
+        }
+      >
+        fake-service-description
+      </Text>
+    </View>
+  </View>
+</View>
+`;

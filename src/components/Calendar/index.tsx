@@ -11,7 +11,7 @@ export function Calendar({
   minDate,
   maxDate,
   activeDay,
-  validWeekDays = [1, 2, 3, 4, 5, 6],
+  validWeekDays = [0, 1, 2, 3, 4, 5, 6],
   onChangeDay,
 }: ICalendarProps) {
   const [calendarDays, setCalendarDays] = useState<TCalendarDays>([

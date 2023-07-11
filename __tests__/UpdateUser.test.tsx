@@ -1,7 +1,7 @@
 import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import ManageUser from '@app/session/(onlyHeader)/manageUser/[userId]';
 import { ToastOptions } from 'react-native-toast-notifications/lib/typescript/toast';
-import { defaultToastParams } from '../mocks/defaultToastParams.mock';
+import { successToastParams } from '../mocks/defaultToastParams.mock';
 
 jest.mock('expo-router', () => {
   const currentRouter = jest.requireActual('expo-router');
@@ -43,7 +43,7 @@ jest.mock('react-native-toast-notifications', () => ({
   }),
 }));
 
-describe('User Update', () => {
+describe('Update User', () => {
   describe('Update profile', () => {
     it('All fields are correct', async () => {
       const { getByTestId } = render(<ManageUser />);
@@ -66,7 +66,7 @@ describe('User Update', () => {
         expect(mockSuccessNotify).toBeCalled();
         expect(mockSuccessNotify).toHaveBeenCalledWith(
           'Seus dados foram atualizados!',
-          defaultToastParams
+          successToastParams
         );
       });
     });
@@ -94,7 +94,7 @@ describe('User Update', () => {
         expect(mockSuccessNotify).toBeCalled();
         expect(mockSuccessNotify).toHaveBeenCalledWith(
           'Sua senha foi atualizada',
-          defaultToastParams
+          successToastParams
         );
       });
     });

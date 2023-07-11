@@ -39,6 +39,9 @@ export default function TabsLayout() {
       />
 
       <Tabs.Screen
+        initialParams={{
+          businessId,
+        }}
         options={{
           header: () => null,
           headerStyle: {
@@ -55,7 +58,7 @@ export default function TabsLayout() {
             />
           ),
         }}
-        name="mySchedule"
+        name="mySchedule/[businessId]"
       />
 
       <Tabs.Screen

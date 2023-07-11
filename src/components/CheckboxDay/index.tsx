@@ -7,6 +7,7 @@ export function CheckboxDay({ day, isChecked, onCheck }: ICheckboxDayProps) {
 
   return (
     <TouchableOpacity
+      testID={day}
       className={`
         px-8 py-3.5 flex-row items-center
         justify-between ${dayBackground}

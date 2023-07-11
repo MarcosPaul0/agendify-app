@@ -3,5 +3,5 @@ export interface IScheduleOptionProps {
   endTime: Date;
   items: string;
   isChecked: boolean;
-  handleCheck: () => void;
+  handleCheck: (startTime: Date, endTime: Date) => void;
 }

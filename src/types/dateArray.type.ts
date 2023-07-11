@@ -1,0 +1,1 @@
+export type TDateArray = [Date, Date];

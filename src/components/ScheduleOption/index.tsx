@@ -23,7 +23,7 @@ export function ScheduleOption({
           bg-GRAY_200 pr-5 ml-5
           flex-1 rounded-lg overflow-hidden
         `}
-        onPress={handleCheck}
+        onPress={() => handleCheck(startTime, endTime)}
       >
         <View
           className={`
