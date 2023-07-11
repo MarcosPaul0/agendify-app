@@ -39,6 +39,9 @@ export default function TabsLayout() {
       />
 
       <Tabs.Screen
+        initialParams={{
+          businessId,
+        }}
         options={{
           header: () => null,
           headerStyle: {
@@ -55,7 +58,7 @@ export default function TabsLayout() {
             />
           ),
         }}
-        name="mySchedule"
+        name="mySchedule/[businessId]"
       />
 
       <Tabs.Screen
@@ -67,6 +70,17 @@ export default function TabsLayout() {
           tabBarButton: () => null,
         }}
         name="myAvailability/[businessId]"
+      />
+
+      <Tabs.Screen
+        options={{
+          headerTitle: 'Meus Agendamentos',
+          headerStyle: {
+            backgroundColor: COLORS.BLUE_100,
+          },
+          tabBarButton: () => null,
+        }}
+        name="myAppointments"
       />
     </Tabs>
   );

@@ -1,0 +1,318 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Count Input Match with snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "flexDirection": "row",
+      },
+      {
+        "alignItems": "center",
+      },
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#3763A4",
+        "borderBottomLeftRadius": 8,
+        "borderTopLeftRadius": 8,
+        "height": 44,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingLeft": 12,
+        "paddingRight": 12,
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="18"
+      bbWidth="18"
+      color="#F8F9FA"
+      focusable={false}
+      height={18}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      size={18}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          [
+            undefined,
+            undefined,
+            {},
+          ],
+          {
+            "flex": 0,
+            "height": 18,
+            "width": 18,
+          },
+        ]
+      }
+      tintColor="#F8F9FA"
+      vbHeight={256}
+      vbWidth={256}
+      width={18}
+    >
+      <RNSVGGroup>
+        <RNSVGRect
+          fill={null}
+          height="256"
+          propList={
+            [
+              "fill",
+            ]
+          }
+          width="256"
+          x="0"
+          y="0"
+        />
+        <RNSVGLine
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294507002,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth="16"
+          x1="40"
+          x2="216"
+          y1="128"
+          y2="128"
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+  <View
+    style={
+      [
+        {
+          "borderTopWidth": 1,
+        },
+        {
+          "borderBottomWidth": 1,
+        },
+        {
+          "borderBottomColor": "#e5e7eb",
+          "borderLeftColor": "#e5e7eb",
+          "borderRightColor": "#e5e7eb",
+          "borderTopColor": "#e5e7eb",
+        },
+        {
+          "paddingLeft": 12,
+          "paddingRight": 12,
+        },
+        {
+          "height": 44,
+        },
+        {
+          "justifyContent": "center",
+        },
+        {
+          "backgroundColor": "#E9ECEF",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 18,
+            "lineHeight": 28,
+          },
+        ]
+      }
+    >
+      2
+    </Text>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#3763A4",
+        "borderBottomRightRadius": 8,
+        "borderTopRightRadius": 8,
+        "height": 44,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingLeft": 12,
+        "paddingRight": 12,
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="18"
+      bbWidth="18"
+      color="#F8F9FA"
+      focusable={false}
+      height={18}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      size={18}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          [
+            undefined,
+            undefined,
+            {},
+          ],
+          {
+            "flex": 0,
+            "height": 18,
+            "width": 18,
+          },
+        ]
+      }
+      tintColor="#F8F9FA"
+      vbHeight={256}
+      vbWidth={256}
+      width={18}
+    >
+      <RNSVGGroup>
+        <RNSVGRect
+          fill={null}
+          height="256"
+          propList={
+            [
+              "fill",
+            ]
+          }
+          width="256"
+          x="0"
+          y="0"
+        />
+        <RNSVGLine
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294507002,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth="16"
+          x1="40"
+          x2="216"
+          y1="128"
+          y2="128"
+        />
+        <RNSVGLine
+          fill={null}
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4294507002,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth="16"
+          x1="128"
+          x2="128"
+          y1="40"
+          y2="216"
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;

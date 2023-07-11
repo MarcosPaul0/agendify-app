@@ -14,10 +14,11 @@ import { useQuery } from 'react-query';
 import { IBusinessResponse } from 'src/interfaces/businessResponse.interface';
 import { IServiceResponse } from 'src/interfaces/serviceResponse.interface';
 
-import { RatingForm } from '@components/RatingModal';
+import { RatingForm } from '@components/RatingForm';
 import { ServiceModal } from '@components/ServiceModal';
 import { getImageUrl } from '@utils/getImageUrl';
 import { useScheduleContext } from '@contexts/ScheduleContext';
+import { RatingsList } from '@components/RatingsList';
 
 export default function ViewBusiness() {
   const params = useSearchParams();
@@ -98,7 +99,7 @@ export default function ViewBusiness() {
   return (
     <Container>
       <ScrollView className="flex-1 w-full">
-        <View className="w-full bg-BLUE_100 pt-4 pb-10 items-center mb-2">
+        <View className="w-full bg-BLUE_100 pt-4 pb-5 items-center mb-2">
           <Image
             source={getImageUrl(business.image_url)}
             className={`
@@ -108,6 +109,11 @@ export default function ViewBusiness() {
           />
           <Text className="font-bold text-lg mt-2 text-BLUE_900">
             {business.name}
+          </Text>
+
+          <Text className="text-sm text-center mt-1 text-GRAY_600 px-5">
+            {business.address.street} - {business.address.number} -{' '}
+            {business.address.city} - {business.address.state}
           </Text>
         </View>
 
@@ -147,6 +153,8 @@ export default function ViewBusiness() {
         </View>
 
         <RatingForm businessId={businessId} updateRating={getBusinessData} />
+
+        <RatingsList businessId={businessId} />
       </ScrollView>
 
       <ServiceModal

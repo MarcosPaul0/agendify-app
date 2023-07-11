@@ -21,6 +21,7 @@ import { HTTP_STATUS } from '@constants/httpStatus.constant';
 import { useNotify } from '@hooks/useNotify';
 import { IAvailabilityResponse } from 'src/interfaces/availabilityResponse.interface';
 import { WEEK_DAY } from '@constants/weekDay.constant';
+import { isEqual } from 'date-fns';
 
 export type TDay =
   | 'sunday'
@@ -90,11 +91,17 @@ export default function MyAvailability() {
     setShowBeginTime(true);
   }
 
+  const endTime = watch('endTime');
+
   function handleChangeBeginTime(
     event: DateTimePickerEvent,
     selectedDate?: Date
   ) {
     if (selectedDate) {
+      if (isEqual(selectedDate, endTime)) {
+        errorNotify('O horário de início e fim não podem ser iguais');
+      }
+
       setValue('beginTime', selectedDate);
     }
 
@@ -105,11 +112,17 @@ export default function MyAvailability() {
     setShowEndTime(true);
   }
 
+  const beginTime = watch('beginTime');
+
   function handleChangeEndTime(
     event: DateTimePickerEvent,
     selectedDate?: Date
   ) {
     if (selectedDate) {
+      if (isEqual(selectedDate, beginTime)) {
+        errorNotify('O horário de início e fim não podem ser iguais');
+      }
+
       setValue('endTime', selectedDate);
     }
 
@@ -132,7 +145,14 @@ export default function MyAvailability() {
     beginTime,
     endTime,
   }: TSetBusinessAvailabilityFormData) {
-    const formattedWeekDays = Object.values(days).reduce<string[]>(
+    const weekDaysAvailable = Object.values(days);
+
+    if (weekDaysAvailable.every((element) => element === false)) {
+      errorNotify('É necessário selecionar pelo menos um dia da semana');
+      return;
+    }
+
+    const formattedWeekDays = weekDaysAvailable.reduce<string[]>(
       (weekDaysAccumulator, isAvailable, day) => {
         if (isAvailable) {
           weekDaysAccumulator.push(String(day + 1));
@@ -142,6 +162,7 @@ export default function MyAvailability() {
       },
       []
     );
+
     const formattedBeginTime = `${formatTime(beginTime)}:00`;
     const formattedEndTime = `${formatTime(endTime)}:00`;
 
@@ -224,8 +245,6 @@ export default function MyAvailability() {
   const thursdayIsChecked = watch('days.thursday');
   const fridayIsChecked = watch('days.friday');
   const saturdayIsChecked = watch('days.saturday');
-  const beginTime = watch('beginTime');
-  const endTime = watch('endTime');
 
   return (
     <Container>
@@ -283,6 +302,7 @@ export default function MyAvailability() {
 
         {showBeginTime && (
           <DateTimePicker
+            testID="beginTimePicker"
             value={beginTime}
             mode="time"
             display="default"
@@ -293,6 +313,7 @@ export default function MyAvailability() {
 
         {showEndTime && (
           <DateTimePicker
+            testID="endTimePicker"
             value={endTime}
             mode="time"
             display="default"
@@ -304,6 +325,7 @@ export default function MyAvailability() {
         <View className="flex-row justify-between gap-4 mb-6">
           <View className="flex-1">
             <TouchableOpacity
+              testID="beginTimePickerButton"
               className={`
               flex-row items-center justify-between
               bg-GRAY_200 rounded-lg px-4 py-2
@@ -322,6 +344,7 @@ export default function MyAvailability() {
 
           <View className="flex-1">
             <TouchableOpacity
+              testID="endTimePickerButton"
               className={`
               flex-row items-center justify-between
               bg-GRAY_200 rounded-lg px-4 py-2

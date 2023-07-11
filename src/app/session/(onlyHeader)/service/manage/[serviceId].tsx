@@ -25,12 +25,19 @@ import { IServiceResponse } from 'src/interfaces/serviceResponse.interface';
 import { z } from 'zod';
 
 const updateServiceValidationSchema = z.object({
-  name: z.string({
-    required_error: 'Campo obrigatório',
-  }),
-  description: z.string({
-    required_error: 'Campo obrigatório',
-  }),
+  name: z
+    .string({
+      required_error: 'Campo obrigatório',
+    })
+    .refine((name) => !(name.length > 50), 'Número máximo de caracteres é 50'),
+  description: z
+    .string({
+      required_error: 'Campo obrigatório',
+    })
+    .refine(
+      (description) => !(description.length > 255),
+      'Número máximo de caracteres é 255'
+    ),
   duration: z.string({
     required_error: 'Campo obrigatório',
   }),

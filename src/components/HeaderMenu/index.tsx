@@ -2,7 +2,14 @@ import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { COLORS } from '@constants/colors.constant';
 import { useAuthContext } from '@contexts/AuthContext';
 import { Link } from 'expo-router';
-import { Clock, Briefcase, User, List, SignOut } from 'phosphor-react-native';
+import {
+  Clock,
+  Briefcase,
+  User,
+  List,
+  SignOut,
+  Calendar,
+} from 'phosphor-react-native';
 import { useState } from 'react';
 import {
   GestureResponderEvent,
@@ -64,21 +71,35 @@ export function HeaderMenu({ businessId }: IHeaderMenuProps) {
               className="flex-row items-center"
               href={`${APP_ROUTES.MANAGE_MY_BUSINESS}/${businessId}`}
             >
-              <View className="flex-row items-center gap-2">
+              <View className="flex-row items-center gap-2 ml-2">
                 <Briefcase size={24} color={COLORS.BLUE_900} />
                 <Text>Dados do negócio</Text>
               </View>
             </Link>
           )}
+
+          {businessId && (
+            <Link
+              className="flex-row items-center"
+              href={`${APP_ROUTES.MY_AVAILABILITY}/${businessId}`}
+            >
+              <View className="flex-row items-center gap-2 ml-2">
+                <Clock size={24} color={COLORS.BLUE_900} />
+                <Text>Disponibilidade</Text>
+              </View>
+            </Link>
+          )}
+
           <Link
             className="flex-row items-center"
-            href={`${APP_ROUTES.MY_AVAILABILITY}/${businessId}`}
+            href={APP_ROUTES.MY_APPOINTMENTS}
           >
-            <View className="flex-row items-center gap-2">
-              <Clock size={24} color={COLORS.BLUE_900} />
-              <Text>Disponibilidade</Text>
+            <View className="flex-row items-center gap-2 ml-2">
+              <Calendar size={24} color={COLORS.BLUE_900} />
+              <Text>Agendamentos</Text>
             </View>
           </Link>
+
           {isAuthenticated && (
             <TouchableOpacity
               className="flex-row items-center gap-2"

@@ -1,7 +1,7 @@
 import { render, fireEvent, waitFor, act } from '@testing-library/react-native';
 import { ToastOptions } from 'react-native-toast-notifications/lib/typescript/toast';
 import ManageBusiness from '@app/session/(onlyHeader)/manageMyBusiness/[businessId]';
-import { defaultToastParams } from '../mocks/defaultToastParams.mock';
+import { successToastParams } from '../mocks/defaultToastParams.mock';
 
 jest.mock('expo-router', () => {
   const currentRouter = jest.requireActual('expo-router');
@@ -38,7 +38,7 @@ jest.mock('react-native-toast-notifications', () => ({
   }),
 }));
 
-describe('Business Update', () => {
+describe('Update Business', () => {
   describe('Business Profile', () => {
     it('All fields are correct', async () => {
       const { getByTestId } = render(<ManageBusiness />);
@@ -64,7 +64,7 @@ describe('Business Update', () => {
         expect(mockSuccessNotify).toBeCalled();
         expect(mockSuccessNotify).toHaveBeenCalledWith(
           'Dados do negócio atualizado com sucesso',
-          defaultToastParams
+          successToastParams
         );
       });
     });
@@ -118,7 +118,7 @@ describe('Business Update', () => {
         fireEvent.changeText(postalCodeInput, '00000-000');
         fireEvent.changeText(districtInput, 'fake district');
         fireEvent.changeText(cityInput, 'fake city');
-        fireEvent.changeText(stateInput, 'fake state');
+        fireEvent.changeText(stateInput, 'FS');
         fireEvent.changeText(streetInput, 'fake street');
         fireEvent.changeText(numberInput, '999');
         fireEvent(registerButton, 'press');
@@ -128,7 +128,7 @@ describe('Business Update', () => {
         expect(mockSuccessNotify).toBeCalled();
         expect(mockSuccessNotify).toHaveBeenCalledWith(
           'Dados do negócio atualizado com sucesso',
-          defaultToastParams
+          successToastParams
         );
       });
     });

@@ -13,4 +13,5 @@ export const APP_ROUTES = {
   MY_AVAILABILITY: '/session/myAvailability',
   VIEW_BUSINESS: '/session/viewBusiness',
   SCHEDULE: '/session/schedule',
+  MY_APPOINTMENTS: '/session/myAppointments',
 } as const;

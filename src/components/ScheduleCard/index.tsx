@@ -7,8 +7,11 @@ import {
 } from 'phosphor-react-native';
 import { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { formatTimeDisplay } from '@utils/formatTimeDisplay';
+import { formatPrice } from '@utils/formatPrice';
+import { IScheduleCardProps } from './interfaces/scheduleCardProps.interface';
 
-export function ScheduleCard() {
+export function ScheduleCard({ schedule }: IScheduleCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleToggleSchedule() {
@@ -35,14 +38,14 @@ export function ScheduleCard() {
               text-base text-GRAY_50 font-bold
             `}
           >
-            20:00
+            {formatTimeDisplay(new Date(schedule.start_datetime))}
           </Text>
         </View>
 
         <View
           className={`
             h-11 px-3 flex-1
-            flex-row items-center
+            
           `}
         >
           <Text
@@ -51,7 +54,15 @@ export function ScheduleCard() {
              flex-1
           `}
           >
-            Marcos Paulo Pereira
+            {schedule.user.name}
+          </Text>
+          <Text
+            className={`
+             text-sm text-GRAY_600
+             flex-1
+          `}
+          >
+            {schedule.user.email}
           </Text>
         </View>
 
@@ -73,16 +84,18 @@ export function ScheduleCard() {
         `}
       >
         <View className="flex-row items-center gap-2">
-          <Timer size={24} />
-          <Text className="text-base">30 minutos</Text>
+          <Briefcase size={24} />
+          <Text className="text-base">{schedule.Service.name}</Text>
         </View>
         <View className="flex-row items-center gap-2">
-          <Briefcase size={24} />
-          <Text className="text-base">Desenvolvimento Mobile</Text>
+          <Timer size={24} />
+          <Text className="text-base">{schedule.Service.duration} h</Text>
         </View>
         <View className="flex-row items-center gap-2">
           <CurrencyDollar size={24} />
-          <Text className="text-base">Pagamento em dinheiro</Text>
+          <Text className="text-base">
+            {formatPrice(schedule.Service.price)}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

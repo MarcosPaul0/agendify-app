@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Section Title Match with snapshot 1`] = `
+<Text
+  style={
+    [
+      {
+        "width": "100%",
+      },
+      {
+        "marginBottom": 20,
+      },
+      {
+        "fontSize": 20,
+        "lineHeight": 28,
+      },
+      {
+        "fontWeight": "700",
+      },
+      {
+        "color": "#3763A4",
+      },
+    ]
+  }
+>
+  fake-title
+</Text>
+`;
