@@ -2,7 +2,14 @@ import { APP_ROUTES } from '@constants/appRoutes.constant';
 import { COLORS } from '@constants/colors.constant';
 import { useAuthContext } from '@contexts/AuthContext';
 import { Link } from 'expo-router';
-import { Clock, Briefcase, User, List, SignOut } from 'phosphor-react-native';
+import {
+  Clock,
+  Briefcase,
+  User,
+  List,
+  SignOut,
+  Calendar,
+} from 'phosphor-react-native';
 import { useState } from 'react';
 import {
   GestureResponderEvent,
@@ -82,6 +89,16 @@ export function HeaderMenu({ businessId }: IHeaderMenuProps) {
               </View>
             </Link>
           )}
+
+          <Link
+            className="flex-row items-center"
+            href={APP_ROUTES.MY_APPOINTMENTS}
+          >
+            <View className="flex-row items-center gap-2 ml-2">
+              <Calendar size={24} color={COLORS.BLUE_900} />
+              <Text>Agendamentos</Text>
+            </View>
+          </Link>
 
           {isAuthenticated && (
             <TouchableOpacity

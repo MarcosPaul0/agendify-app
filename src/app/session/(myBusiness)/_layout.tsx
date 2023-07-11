@@ -71,6 +71,17 @@ export default function TabsLayout() {
         }}
         name="myAvailability/[businessId]"
       />
+
+      <Tabs.Screen
+        options={{
+          headerTitle: 'Meus Agendamentos',
+          headerStyle: {
+            backgroundColor: COLORS.BLUE_100,
+          },
+          tabBarButton: () => null,
+        }}
+        name="myAppointments"
+      />
     </Tabs>
   );
 }
